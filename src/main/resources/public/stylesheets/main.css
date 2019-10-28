@@ -25,3 +25,21 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+  .popup .popuptext {
+    visibility: hidden;
+    color: #ffffff;
+    background-color: #555555;
+    text-align: center;
+    position: absolute;
+    padding: 10px;
+    z-index: 1;
+  }
+
+  .popup .show {
+    visibility: visible;
+  }
