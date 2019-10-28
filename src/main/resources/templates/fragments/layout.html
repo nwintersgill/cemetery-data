@@ -1,0 +1,35 @@
+<!doctype html>
+<html th:fragment="layout (template, menu)">
+<head>
+    <title>Cemetery Data</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+                </li>
+                <li>
+                    <a href="https://devcenter.heroku.com/articles/how-heroku-works"> Search</a>
+                </li>
+                <li class="dropdown">
+                    <a href="search"> Input Data</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-right">
+                    <a href="https://devcenter.heroku.com"><span class="glyphicon glyphicon-book"></span> About Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div th:replace="${template}"/>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
