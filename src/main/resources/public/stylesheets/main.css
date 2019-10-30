@@ -3,10 +3,11 @@
   color: white;
   padding-bottom: 80px; }
   .jumbotron .btn-primary {
-    background: darkred;
+    background: brown;
     border-color: maroon; }
     .jumbotron .btn-primary:hover {
-      background: maroon; }
+      background: darkred; 
+      border-color: #6e0000; }
   .jumbotron p {
     color: black;
     max-width: 75%;
@@ -25,12 +26,13 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
-.popup {
+.navbar .popup {
+  color: #9d9d9d;
   position: relative;
   display: inline-block;
   cursor: pointer;
 }
-  .popup .popuptext {
+  .navbar .popup .popuptext {
     visibility: hidden;
     color: #ffffff;
     background-color: #555555;
