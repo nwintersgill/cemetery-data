@@ -1,3 +1,7 @@
+<!-- Team Reaper - Nina Benson, Nathan Wintersgill, Joe Yu, Lucas Morgan
+ * index.java
+ * The html file containing the map gui -->
+
 <html>
 
 <head>
@@ -6,17 +10,23 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-   crossorigin=""/>
+   crossorigin=""/> <!-- stylesheet from leaflet -->
 
    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-   crossorigin=""></script>
+   crossorigin=""></script> <!-- header from leaflet -->
 
 <style>
 #map {
     width: 1960px;
-    height:1080px;
+    height:1080px; 
 }
+
+#iframe{
+  width: 300px;
+  height: 400px;
+}
+
 </style>
 
 </head>
@@ -27,14 +37,12 @@
 
 <script>
 
-    var map = L.map('map').setView([40.9578336, -76.88758], 15);
-
-    document.write('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+    var map = L.map('map').setView([40.9578336, -76.88758], 15);  // setting the map at LatLng{40.9578336, -76.88758} with zoom 15
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 25
-    }).addTo(map);
+    }).addTo(map); // Set up the basic map layer, in this case the map layer is OpenStreetMap
 
     var popup = L.popup();
 
@@ -45,10 +53,11 @@
         .setContent(e.latlng.toString())
         .openOn(map);
     }
-    map.on('click', onMapClick);
+    map.on('click', onMapClick); // Click event, show LatLng in popup when clicked
 
     var marker = L.marker([40.95738, -76.88876], {title: "Lewisburg Cemetery"}).addTo(map);
-    marker.bindPopup("<b>Lewisburg Cemetery</b><br>");
+    marker.bindPopup('<iframe id="iframe" src="./cem_map.html"></iframe>'); // Add a marker to the map
+    //marker.bindTooltip("Lewisburg Cemetery").openTooltip();
 
     var geojson = {
   "type": "FeatureCollection",
@@ -60,7 +69,7 @@
             weight: 2,
             color: "#999",
             opacity: 1,
-            fillColor: "#B0DE5C",
+            fillColor: "#B19CD9",
             fillOpacity: 0.8
         }
     },
@@ -118,7 +127,11 @@
     }
   ]
 };
-    L.geoJSON(geojson, {style: function (feature) {return feature.properties.style;}}).addTo(map);
+    L.geoJSON(geojson, {style: function (feature) {return feature.properties.style;}}).addTo(map); // Add the geoJson polygon on the map
+
+
+
+
 
     
 </script>

@@ -1,0 +1,114 @@
+<html>
+
+<head>
+
+<title>Lewisburg Cemetery</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+
+   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+
+<style>
+#map {
+    width: 300px;
+    height:300px;
+}
+</style>
+
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+<script>
+    var base = {'Empty': L.tileLayer('')};
+
+    var map = L.map('map',{'center': [0, 0], 'zoom': 15, 'layers': [base.Empty], 'zoomControl': false, 'attributionControl': false});
+    //map.fitBounds([[0,0],[300,-300]]);
+    
+    var mapWidth = map.getBounds().getNorthEast().lng - map.getBounds().getSouthWest().lng,
+        mapHeight = map.getBounds().getNorthEast().lat - map.getBounds().getSouthWest().lat;
+
+    var countX = 10; //cells by x
+    var countY = 10; //cells by y
+    var cellWidth = mapWidth / countX;
+    var cellHeight = mapHeight / countY;
+
+    //console.log(cellWidth, cellHeight, mapWidth, mapHeight);
+    var coordinates = [],
+    curX = map.getBounds().getNorthWest().lng, curY = map.getBounds().getNorthWest().lat, //cursor
+    //top-left/top-right/bottom-right/bottom-left
+    tLx, tLy,   tRx, tRy,
+    bRx, bRy,   bLx, bLy;
+
+    var grid;
+// build coordinates array, from top-left to bottom-right
+// count by row
+    for(var iY = 0; iY < countY; iY++){
+  // count by cell in row
+        for(var iX = 0; iX < countX; iX++){
+            tLx = bLx = curX;
+            tLy = tRy = curY;
+            tRx = bRx = curX + cellWidth;
+            bRy = bLy = curY - cellHeight;
+
+            var cell = [
+            // top-left/top-right/bottom-right/bottom-left/top-left
+            [tLx, tLy], [tRx, tRy], [bRx, bRy], [bLx, bLy], [tLx, tLy]
+            ];
+            var color;
+            color = '#F9E79F';
+            grid = {
+                "type": "FeatureCollection",
+                "features": [
+                    {
+                    "type": "Feature",
+                    "properties": {
+                        "style": {
+                            weight: 2,
+                            color: "#999",
+                            opacity: 1,
+                            fillColor: color,
+                            fillOpacity: 1
+                        }
+                    },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [cell
+                        ]
+                    }
+                }
+                ]
+            };
+            L.geoJSON(grid, {style: function (feature) {return feature.properties.style;}}).addTo(map);
+            // refresh cusror for cell
+            curX = curX + cellWidth;
+        }
+  // refresh cursor for row
+        curX = map.getBounds().getNorthWest().lng;
+        curY = curY - cellHeight;
+    }
+
+    var popup = L.popup();
+
+
+    function onMapClick(e){
+        popup
+        .setLatLng(e.latlng)
+        .setContent(e.latlng.toString())
+        .openOn(map);
+    }
+    map.on('click', onMapClick);
+    
+
+    
+</script>
+
+</body>
+
+</html>
