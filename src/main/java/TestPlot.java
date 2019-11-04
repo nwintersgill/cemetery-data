@@ -30,12 +30,16 @@ public class TestPlot extends TestCase {
  	*/
 	@Test
 	public void testSetName() {
-		System.out.print("Set, Get Name\n");
+		System.out.print("Set Name, Spouse\n");
 		String name = "John Doe";
+		String spouse = "Jane Doe";
 		Plot plot = new Plot();
 		
 		plot.setName("John Doe");
 		assertEquals(plot.getName(), name);
+		
+		plot.setSpouse("Jane Doe");
+		assertEquals(plot.getSpouse(), spouse);
 	}
 
 	/** 
@@ -43,16 +47,19 @@ public class TestPlot extends TestCase {
 	 * specified plot
 	 */
 	@Test
-	public void testBirthDeathYear() {
-		System.out.print("Birth, Death Years\n");
+	public void testAge() {
+		System.out.print("Birth, Death Years and Age\n");
 		int birthYear = 2000;
 		int deathYear = 2019;
+		int age = 19;
 		Plot plot = new Plot();
 		
 		plot.setBirthYear(2000);
-		plot.setDeathYear(2019);
 		assertEquals(plot.getBirthYear(), birthYear);
+		plot.setDeathYear(2019);
 		assertEquals(plot.getDeathYear(), deathYear);
+		plot.setAge(19);
+		assertEquals(plot.getAge(), age);
 	}
 	
 	/**
