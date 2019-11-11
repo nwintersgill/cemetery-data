@@ -1,3 +1,8 @@
+
+/*TODO: unify all color formatting to hex
+        unify all screen units (pixels, etc.)
+*/
+
 .jumbotron {
   background: #cccccc;
   color: white;
@@ -26,6 +31,15 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+.results h3 {
+  color: black;
+}
+  .results ul {
+    padding-left: 40px;
+    padding-right: 40px;
+    color: black;
+  }
+
 .navbar .popup {
   color: #9d9d9d;
   position: relative;
@@ -42,7 +56,10 @@
     padding: 10px;
     z-index: 1;
   }
-
   .navbar .popup .popuptext .show {
     visibility: visible;
+  }
+
+  .navbar .popup .popuptext .input {
+    color: black;
   }
