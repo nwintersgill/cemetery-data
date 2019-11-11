@@ -47,6 +47,9 @@
   padding: 15px;
   cursor: pointer;
 }
+  .navbar .popup:hover {
+    color: white;
+  }
   .navbar .popup .popuptext {
     visibility: hidden;
     color: #ffffff;
@@ -56,10 +59,11 @@
     padding: 10px;
     z-index: 1;
   }
-  .navbar .popup .popuptext .show {
-    visibility: visible;
-  }
 
   .navbar .popup .popuptext .input {
     color: black;
   }
+
+#searchPopup .show {
+  visibility: visible;
+}
