@@ -64,6 +64,6 @@
     color: black;
   }
 
-#searchPopup .show {
+  .navbar .popup .popuptext .show {
   visibility: visible;
 }
