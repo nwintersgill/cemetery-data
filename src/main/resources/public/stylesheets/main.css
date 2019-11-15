@@ -60,10 +60,10 @@
     z-index: 1;
   }
 
-  .navbar .popup .popuptext .input {
+  .navbar .popup .popuptext input {
     color: black;
   }
 
-  .navbar .popup .popuptext .show {
-  visibility: visible;
+  .navbar .popup .popuptext.show {
+    visibility: visible;
 }
