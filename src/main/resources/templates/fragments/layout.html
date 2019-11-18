@@ -14,14 +14,12 @@
                     <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
                 </li>
                 <li>
-                    <div class="popup">
-                        <span class = "popupbutton" onclick="toggleSearchPopup()"> Search </span>
-                        <form action="/search.txt" class="popuptext" id="searchPopup">
-                            First name: <input type="text" name="FirstName"><br>
-                            Last name: <input type="text" name="LastName"><br>
-                            <input type="submit" value="Search">
-                        </form>
-                    </div>
+                    <div class="popup" onclick="toggleSearchPopup()"> Search </div>
+                    <form action="/search.txt" class="popuptext" id="searchPopup">
+                        First name: <input type="text" name="FirstName"><br>
+                        Last name: <input type="text" name="LastName"><br>
+                        <input type="submit" value="Search">
+                    </form>
                 </li>
                 <li>
                     <a href="search"> Input Data</a>

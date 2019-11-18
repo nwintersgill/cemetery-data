@@ -50,7 +50,7 @@
   .navbar .popup:hover {
     color: white;
   }
-  .navbar .popup .popuptext {
+  .navbar .popuptext {
     visibility: hidden;
     color: #ffffff;
     background-color: #555555;
@@ -60,10 +60,10 @@
     z-index: 1;
   }
 
-  .navbar .popup .popuptext input {
+  .navbar .popuptext input {
     color: black;
   }
 
-  .navbar .popup .popuptext.show {
+  .navbar .popuptext.show {
     visibility: visible;
 }
