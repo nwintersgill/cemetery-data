@@ -10,7 +10,8 @@ package plot;
 
 public class Plot {
 
-	String name;
+	String firstName
+	String lastName;
 	String spouse;
 	int birthYear;
 	int deathYear;
@@ -20,7 +21,8 @@ public class Plot {
 	int price;
 
 	public Plot() {
-		this.name = null;
+		this.firstName = null;
+		this.lastName = null;
 		this.spouse = null;
 		this.birthYear = -1;
 		this.deathYear = -1;
@@ -30,8 +32,9 @@ public class Plot {
 		this.price = -1;
 	
 }
-	public Plot(String name, String spouse, int birthYear, int deathYear, int age, boolean bought, boolean inUse, int price) {
-		this.name = name;
+	public Plot(String firstName, String lastName, String spouse, int birthYear, int deathYear, int age, boolean bought, boolean inUse, int price) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.spouse = spouse;
 		this.birthYear = birthYear;
 		this.deathYear = deathYear;
@@ -46,8 +49,12 @@ public class Plot {
 	
 	
 	//Getters for all attributes of the plot class
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
 	}
 	
 	public String getSpouse() {
@@ -79,8 +86,12 @@ public class Plot {
 	}
 	
 	//setters for all attributes of the plot class
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	public void setSpouse(String spouse) {
@@ -109,6 +120,13 @@ public class Plot {
 	
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	@Override
+	public String toString() {
+		String myString = String.format("%-10s %-10s %-20s %-10s %-10s %-4s %-6s %-6s %-5s", firstName, lastName, spouse, Integer.toString(birthYear), Integer.toString(deathYear), Integer.toString(age), Boolean.toString(bought), Boolean.toString(inUse), Integer.toString(price));
+		System.out.println(String.format("%-10s %-10s %-20s %-10s %-10s %-4s %-6s %-6s %-5s", " First", "Last", "Spouse", "Birth Year", "Death Year", "Age", "Bought", "In Use", "Price"));
+		return myString;
 	}
 }
 
