@@ -30,13 +30,17 @@ public class TestPlot extends TestCase {
  	*/
 	@Test
 	public void testSetName() {
-		System.out.print("Set Name, Spouse\n");
-		String name = "John Doe";
+		System.out.print("First Name, Last Name, Spouse\n");
+		String first = "John";
+		String last = "Doe";
 		String spouse = "Jane Doe";
 		Plot plot = new Plot();
 		
-		plot.setName("John Doe");
-		assertEquals(plot.getName(), name);
+		plot.setFirstName("John");
+		assertEquals(plot.getFirstName(), first);
+		
+		plot.setLastName("Doe");
+		assertEquals(plot.getLastName(), last);
 		
 		plot.setSpouse("Jane Doe");
 		assertEquals(plot.getSpouse(), spouse);
