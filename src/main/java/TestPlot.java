@@ -30,7 +30,6 @@ public class TestPlot extends TestCase {
  	*/
 	@Test
 	public void testSetName() {
-		System.out.print("First Name, Last Name, Spouse\n");
 		String first = "John";
 		String last = "Doe";
 		String spouse = "Jane Doe";
@@ -44,6 +43,8 @@ public class TestPlot extends TestCase {
 		
 		plot.setSpouse("Jane Doe");
 		assertEquals(plot.getSpouse(), spouse);
+		
+		System.out.println("First Name, Last Name, Spouse was successful.");
 	}
 
 	/** 
@@ -52,7 +53,6 @@ public class TestPlot extends TestCase {
 	 */
 	@Test
 	public void testAge() {
-		System.out.print("Birth, Death Years and Age\n");
 		int birthYear = 2000;
 		int deathYear = 2019;
 		int age = 19;
@@ -64,6 +64,8 @@ public class TestPlot extends TestCase {
 		assertEquals(plot.getDeathYear(), deathYear);
 		plot.setAge(19);
 		assertEquals(plot.getAge(), age);
+		
+		System.out.println("Birth, Death Years and Age was successful.");
 	}
 	
 	/**
@@ -72,12 +74,13 @@ public class TestPlot extends TestCase {
 	 */
 	@Test
 	public void testBoughtInUse() {
-		System.out.print("Bought, InUse\n");
 		Plot plot = new Plot();
 		assertEquals(plot.getBought(), false);	//Checking that the default value of bought is false
 		
 		plot.setInUse(true);
 		assertEquals(plot.getInUse(), true);	//Checking that the boolean value can be changed
+		
+		System.out.println("Bought, InUse was successful.");
 	}
 	
 	/**
@@ -85,11 +88,25 @@ public class TestPlot extends TestCase {
 	 */
 	@Test
 	public void testPrice() {
-		System.out.print("Set, get Price\n");
 		int price = 100;
 		Plot plot = new Plot();
 		
 		plot.setPrice(100);
 		assertEquals(plot.getPrice(), price);
+		
+		System.out.println("Set, get Price was successful.");
+	}
+	
+	/**
+	 * Test the ability to change and get the location of a specified plot
+	 */
+	@Test
+	public void testLocation() {
+		String location = "A-3";
+		Plot plot = new Plot();
+		
+		plot.setLocation(location);
+		assertEquals(plot.getLocation(), "A-3");
+		System.out.println("Set, get Location was successsful.");
 	}
 }
