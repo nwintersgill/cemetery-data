@@ -52,6 +52,7 @@
   }
   .navbar .popuptext {
     visibility: hidden;
+    min-width: 250px;
     color: #ffffff;
     background-color: #555555;
     text-align: center;
@@ -62,6 +63,14 @@
 
   .navbar .popuptext input {
     color: black;
+  }
+
+  .navbar .popuptext input .textinput {
+    float: right;
+  }
+
+  .navbar .popuptext input .button {
+    margin-top: 10px;
   }
 
   .navbar .popuptext.show {
