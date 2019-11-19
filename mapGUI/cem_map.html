@@ -29,7 +29,9 @@
     var base = {'Empty': L.tileLayer('')};
 
     var map = L.map('map',{'center': [0, 0], 'zoom': 15, 'layers': [base.Empty], 'zoomControl': false, 'attributionControl': false});
-    //map.fitBounds([[0,0],[300,-300]]);
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
     
     var mapWidth = map.getBounds().getNorthEast().lng - map.getBounds().getSouthWest().lng,
         mapHeight = map.getBounds().getNorthEast().lat - map.getBounds().getSouthWest().lat;
@@ -46,7 +48,10 @@
     tLx, tLy,   tRx, tRy,
     bRx, bRy,   bLx, bLy;
 
-    var grid;
+    var green = '#49FF00', red = '#FF0000', yellow = '#FFD500';
+
+    var grid, counter;
+    counter = 0;
 // build coordinates array, from top-left to bottom-right
 // count by row
     for(var iY = 0; iY < countY; iY++){
@@ -62,18 +67,25 @@
             [tLx, tLy], [tRx, tRy], [bRx, bRy], [bLx, bLy], [tLx, tLy]
             ];
             var color;
-            color = '#F9E79F';
+            fillColor = yellow;
+            if (counter > 25 && counter < 53){
+                fillColor = green;
+            }
+            else if (counter == 65){
+                fillColor = red;
+            } 
             grid = {
                 "type": "FeatureCollection",
                 "features": [
                     {
                     "type": "Feature",
                     "properties": {
+                        "popupContent": "TODO: add code and connect plot class " + counter.toString(),
                         "style": {
                             weight: 2,
-                            color: "#999",
+                            color: "#FFFFFF",
                             opacity: 1,
-                            fillColor: color,
+                            fillColor: fillColor,
                             fillOpacity: 1
                         }
                     },
@@ -85,9 +97,10 @@
                 }
                 ]
             };
-            L.geoJSON(grid, {style: function (feature) {return feature.properties.style;}}).addTo(map);
+            L.geoJSON(grid, {style: function (feature) {return feature.properties.style;}, onEachFeature: function (feature, layer) {layer.bindPopup(feature.properties.popupContent)}}).addTo(map);
             // refresh cusror for cell
             curX = curX + cellWidth;
+            counter += 1;
         }
   // refresh cursor for row
         curX = map.getBounds().getNorthWest().lng;
@@ -97,14 +110,13 @@
     var popup = L.popup();
 
 
-    function onMapClick(e){
+    /*function onMapClick(e){
         popup
         .setLatLng(e.latlng)
         .setContent(e.latlng.toString())
         .openOn(map);
     }
-    map.on('click', onMapClick);
-    
+    map.on('click', onMapClick);// Test Purpose*/
 
     
 </script>
