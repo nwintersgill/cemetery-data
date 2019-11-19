@@ -65,11 +65,11 @@
     color: black;
   }
 
-  .navbar .popuptext input .textinput {
+  .navbar .popuptext input[type=text] {
     float: right;
   }
 
-  .navbar .popuptext input .button {
+  .navbar .popuptext input[type=button] {
     margin-top: 10px;
   }
 
