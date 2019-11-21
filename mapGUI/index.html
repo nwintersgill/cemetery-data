@@ -1,0 +1,128 @@
+<html>
+
+<head>
+
+<title>Leaflet Web Map</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+
+   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+
+<style>
+#map {
+    width: 1960px;
+    height:1080px;
+}
+</style>
+
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+<script>
+
+    var map = L.map('map').setView([40.9578336, -76.88758], 15);
+
+    document.write('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 25
+    }).addTo(map);
+
+    var popup = L.popup();
+
+
+    function onMapClick(e){
+        popup
+        .setLatLng(e.latlng)
+        .setContent(e.latlng.toString())
+        .openOn(map);
+    }
+    map.on('click', onMapClick);
+
+    var marker = L.marker([40.95738, -76.88876], {title: "Lewisburg Cemetery"}).addTo(map);
+    marker.bindPopup("<b>Lewisburg Cemetery</b><br>");
+
+    var geojson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+          "style": {
+            weight: 2,
+            color: "#999",
+            opacity: 1,
+            fillColor: "#B0DE5C",
+            fillOpacity: 0.8
+        }
+    },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -76.88753843307495,
+              40.960115821329644
+            ],
+            [
+              -76.88982367515564,
+              40.957903923761066
+            ],
+            [
+              -76.89137935638428,
+              40.95712609601202
+            ],
+            [
+              -76.89093947410583,
+              40.95626723389178
+            ],
+            [
+              -76.89051032066345,
+              40.955578515628055
+            ],
+            [
+              -76.88995242118835,
+              40.95481686588719
+            ],
+            [
+              -76.88852548599243,
+              40.95603226023286
+            ],
+            [
+              -76.88831090927124,
+              40.95640497668229
+            ],
+            [
+              -76.88817143440247,
+              40.956364464126686
+            ],
+            [
+              -76.88600420951843,
+              40.9585845155229
+            ],
+            [
+              -76.88753843307495,
+              40.960115821329644
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+};
+    L.geoJSON(geojson, {style: function (feature) {return feature.properties.style;}}).addTo(map);
+
+    
+</script>
+
+</body>
+
+</html>

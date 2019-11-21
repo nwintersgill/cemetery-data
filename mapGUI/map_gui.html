@@ -1,0 +1,122 @@
+
+<!-- saved from url=(0041)file:///C:/Users/hasee/Desktop/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>Leaflet Web Map</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="">
+
+   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+
+<style>
+#map {
+    width: 1960px;
+    height:1080px;
+}
+</style>
+
+</head>
+
+<body>
+
+    <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative; outline: none;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 25; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" role="presentation" src="./map_gui_files/12290.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(846px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(846px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12290(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(590px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12290(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1102px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(846px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(590px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1102px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(590px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1102px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(846px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12290(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(334px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12290(4).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1358px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(846px, 883px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(590px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1102px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(334px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289(4).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1358px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(334px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291(4).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1358px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(590px, 883px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1102px, 883px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(334px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288(4).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1358px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(334px, 883px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292(4).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1358px, 883px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12290(5).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(78px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12290(6).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1614px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289(5).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(78px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289(6).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1614px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291(5).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(78px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291(6).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1614px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288(5).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(78px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288(6).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1614px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292(5).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(78px, 883px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292(6).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1614px, 883px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12290(7).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-178px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12290(8).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1870px, 371px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289(7).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-178px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12289(8).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1870px, 115px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291(7).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-178px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12291(8).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1870px, 627px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288(7).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-178px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12288(8).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1870px, -141px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292(7).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-178px, 883px, 0px); opacity: 1;"><img alt="" role="presentation" src="./map_gui_files/12292(8).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1870px, 883px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-shadow-pane"><img src="./map_gui_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" alt="" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(952px, 554px, 0px);"></div><div class="leaflet-pane leaflet-overlay-pane"><svg pointer-events="none" class="leaflet-zoom-animated" width="2352" height="1296" viewBox="-196 -108 2352 1296" style="transform: translate3d(-196px, -108px, 0px);"><g><path class="leaflet-interactive" stroke="#999" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#B0DE5C" fill-opacity="0.8" fill-rule="evenodd" d="M981 469L927 538L891 562L901 588L924 633L958 596L963 584L966 585L1016 517z"></path></g></svg></div><div class="leaflet-pane leaflet-marker-pane"><img src="./map_gui_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" title="Lewisburg Cemetery" alt="" tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(952px, 554px, 0px); z-index: 554;"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(2.40269e+06px, 3.14641e+06px, 0px) scale(16384);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="file:///C:/Users/hasee/Desktop/index.html#" title="Zoom in" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="file:///C:/Users/hasee/Desktop/index.html#" title="Zoom out" role="button" aria-label="Zoom out">&#8722;</a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com/" title="A JS library for interactive maps">Leaflet</a> | � <a href="http://osm.org/copyright">OpenStreetMap</a> contributors</div></div></div></div>
+
+<script>
+
+    var map = L.map('map').setView([40.9578336, -76.88758], 15);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 25
+    }).addTo(map);
+
+    var popup = L.popup();
+
+
+    function onMapClick(e){
+        popup
+        .setLatLng(e.latlng)
+        .setContent(e.latlng.toString())
+        .openOn(map);
+    }
+    map.on('click', onMapClick);
+
+    var marker = L.marker([40.95738, -76.88876], {title: "Lewisburg Cemetery"}).addTo(map);
+    marker.bindPopup("<b>Lewisburg Cemetery</b><br>");
+
+    var geojson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+          "style": {
+            weight: 2,
+            color: "#999",
+            opacity: 1,
+            fillColor: "#B0DE5C",
+            fillOpacity: 0.8
+        }
+    },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -76.88753843307495,
+              40.960115821329644
+            ],
+            [
+              -76.88982367515564,
+              40.957903923761066
+            ],
+            [
+              -76.89137935638428,
+              40.95712609601202
+            ],
+            [
+              -76.89093947410583,
+              40.95626723389178
+            ],
+            [
+              -76.89051032066345,
+              40.955578515628055
+            ],
+            [
+              -76.88995242118835,
+              40.95481686588719
+            ],
+            [
+              -76.88852548599243,
+              40.95603226023286
+            ],
+            [
+              -76.88831090927124,
+              40.95640497668229
+            ],
+            [
+              -76.88817143440247,
+              40.956364464126686
+            ],
+            [
+              -76.88600420951843,
+              40.9585845155229
+            ],
+            [
+              -76.88753843307495,
+              40.960115821329644
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+};
+    L.geoJSON(geojson, {style: function (feature) {return feature.properties.style;}}).addTo(map);
+
+    
+</script>
+
+
+
+</body></html>

@@ -3,6 +3,7 @@
         unify all screen units (pixels, etc.)
 */
 
+
 .jumbotron {
   background: #cccccc;
   color: white;
@@ -13,6 +14,7 @@
     .jumbotron .btn-primary:hover {
       background: darkred; 
       border-color: #6e0000; }
+
   .jumbotron p {
     color: black;
     max-width: 75%;
@@ -80,3 +82,4 @@
   .navbar .popuptext.show {
     visibility: visible;
 }
+
