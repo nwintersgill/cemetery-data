@@ -52,7 +52,7 @@
   }
   .navbar .popuptext {
     visibility: hidden;
-    min-width: 275px;
+    min-width: 300px;
     color: #ffffff;
     background-color: #555555;
     text-align: center;
