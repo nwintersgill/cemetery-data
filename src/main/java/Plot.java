@@ -10,9 +10,10 @@ package plot;
 
 public class Plot {
 
-	String firstName
+	String firstName;
 	String lastName;
 	String spouse;
+	String location;
 	int birthYear;
 	int deathYear;
 	int age;
@@ -24,6 +25,7 @@ public class Plot {
 		this.firstName = null;
 		this.lastName = null;
 		this.spouse = null;
+		this.location = null;
 		this.birthYear = -1;
 		this.deathYear = -1;
 		this.age = -1;
@@ -32,10 +34,11 @@ public class Plot {
 		this.price = -1;
 	
 }
-	public Plot(String firstName, String lastName, String spouse, int birthYear, int deathYear, int age, boolean bought, boolean inUse, int price) {
+	public Plot(String firstName, String lastName, String spouse, String location, int birthYear, int deathYear, int age, boolean bought, boolean inUse, int price) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.spouse = spouse;
+		this.location = location;
 		this.birthYear = birthYear;
 		this.deathYear = deathYear;
 		this.age = age;
@@ -59,6 +62,10 @@ public class Plot {
 	
 	public String getSpouse() {
 		return spouse;
+	}
+	
+	public String getLocation() {
+		return location;
 	}
 	
 	public int getBirthYear() {
@@ -98,6 +105,10 @@ public class Plot {
 		this.spouse = spouse;
 	}
 	
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
 	public void setBirthYear(int birthYear) {
 		this.birthYear = birthYear;
 	}
@@ -121,12 +132,12 @@ public class Plot {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
 	@Override
 	public String toString() {
-		String myString = String.format("%-10s %-10s %-20s %-10s %-10s %-4s %-6s %-6s %-5s", firstName, lastName, spouse, Integer.toString(birthYear), Integer.toString(deathYear), Integer.toString(age), Boolean.toString(bought), Boolean.toString(inUse), Integer.toString(price));
-		System.out.println(String.format("%-10s %-10s %-20s %-10s %-10s %-4s %-6s %-6s %-5s", " First", "Last", "Spouse", "Birth Year", "Death Year", "Age", "Bought", "In Use", "Price"));
+		String myString = String.format("%-10s %-10s %-20s %-10s %-10s %-10s %-4s %-6s %-6s %-5s", firstName, lastName, spouse, location, Integer.toString(birthYear), Integer.toString(deathYear), Integer.toString(age), Boolean.toString(bought), Boolean.toString(inUse), Integer.toString(price));
+		System.out.println(String.format("%-10s %-10s %-20s %-10s %-10s %-10s %-4s %-6s %-6s %-5s", " First", "Last", "Spouse", "Location", "Birth Year", "Death Year", "Age", "Bought", "In Use", "Price"));
 		return myString;
 	}
+	
 }
 
