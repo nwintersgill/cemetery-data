@@ -14,9 +14,18 @@
                     <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
                 </li>
                 <li>
-                    <a href="https://devcenter.heroku.com/articles/how-heroku-works"> Search</a>
+                    <div class="popup" onclick="toggleSearchPopup()"> Search </div>
+                    <form class="popuptext" id="searchPopup" method="post">
+                        <div>
+                            <label>First name:</label> <input type="text" name="FirstName"><br>
+                        </div>
+                        <div>
+                            <label>Last name:</label> <input type="text" name="LastName"><br>
+                        </div>
+                        <input type="submit" value="Search">
+                    </form>
                 </li>
-                <li class="dropdown">
+                <li>
                     <a href="search"> Input Data</a>
                 </li>
             </ul>
@@ -33,3 +42,10 @@
     <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
+
+<script>
+    function toggleSearchPopup() {
+        let popup = document.getElementById("searchPopup");
+        popup.classList.toggle("show");
+    }
+</script>

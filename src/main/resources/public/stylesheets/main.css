@@ -1,12 +1,18 @@
+
+/*TODO: unify all color formatting to hex
+        unify all screen units (pixels, etc.)
+*/
+
 .jumbotron {
   background: #cccccc;
   color: white;
   padding-bottom: 80px; }
   .jumbotron .btn-primary {
-    background: darkred;
+    background: brown;
     border-color: maroon; }
     .jumbotron .btn-primary:hover {
-      background: maroon; }
+      background: darkred; 
+      border-color: #6e0000; }
   .jumbotron p {
     color: black;
     max-width: 75%;
@@ -25,3 +31,52 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+.results h3 {
+  color: black;
+}
+  .results ul {
+    padding-left: 40px;
+    padding-right: 40px;
+    color: black;
+  }
+
+.navbar .popup {
+  color: #9d9d9d;
+  position: relative;
+  display: inline-block;
+  padding: 15px;
+  cursor: pointer;
+}
+  .navbar .popup:hover {
+    color: white;
+  }
+  .navbar .popuptext {
+    visibility: hidden;
+    min-width: 300px;
+    color: #ffffff;
+    background-color: #555555;
+    text-align: center;
+    position: absolute;
+    padding: 10px;
+    z-index: 1;
+  }
+
+  .navbar .popuptext label {
+    margin-bottom: 20px;
+  }
+
+  .navbar .popuptext input {
+    color: black;
+  }
+
+  .navbar .popuptext input[type=text] {
+    float: right;
+  }
+
+  .navbar .popuptext input[type=submit] {
+    margin-top: 10px;
+  }
+
+  .navbar .popuptext.show {
+    visibility: visible;
+}
