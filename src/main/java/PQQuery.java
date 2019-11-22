@@ -71,6 +71,7 @@ public class PQQuery {
 			int split = info.indexOf(' ');
 			user = info.substring(0, split);
 			pass = info.substring(split+1);
+			Connection db = null;
 			try  {
 				//	    System.out.println(url+" "+user+" "+pass);
 				System.out.println(url+"  user_name pass_word");
