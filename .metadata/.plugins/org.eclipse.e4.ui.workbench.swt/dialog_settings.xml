@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ShowViewDialog">
+		<item key="ShowViewDialog.STORE_SELECTED_VIEW_ID" value="org.eclipse.egit.ui.RepositoriesView"/>
+		<item key="DIALOG_X_ORIGIN" value="360"/>
+		<item key="DIALOG_Y_ORIGIN" value="108"/>
+		<item key="DIALOG_WIDTH" value="304"/>
+		<item key="DIALOG_HEIGHT" value="415"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="General"/>
+			<item value="Git"/>
+		</list>
+	</section>
+</section>

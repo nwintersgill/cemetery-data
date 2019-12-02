@@ -1,0 +1,237 @@
+<!-- Team Reaper - Nina Benson, Nathan Wintersgill, Joe Yu, Lucas Morgan
+ * index.java
+ * The html file containing the map gui -->
+
+<html>
+
+<head>
+
+<title>Leaflet Web Map</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/> <!-- stylesheet from leaflet -->
+
+   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script> <!-- header from leaflet -->
+
+<style>
+#map {
+    width: 1960px;
+    height:1080px; 
+}
+
+#iframe{
+  width: 300px;
+  height: 400px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+<script>
+
+    var map = L.map('map').setView([40.436470, -79.770541], 15);  // setting the map at LatLng{40.9578336, -76.88758} with zoom 15
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 25
+    }).addTo(map); // Set up the basic map layer, in this case the map layer is OpenStreetMap
+
+    var popup = L.popup();
+
+
+    function onMapClick(e){
+        popup
+        .setLatLng(e.latlng)
+        .setContent(e.latlng.toString())
+        .openOn(map);
+    }
+    map.on('click', onMapClick); // Click event, show LatLng in popup when clicked
+
+    var marker_crossroad = L.marker([40.436470, -79.770541], {title: "Crossroads Cemetery"}).addTo(map);
+    marker_crossroad.bindPopup('<iframe id="iframe" src="./cem_map.html"></iframe>'); // Add a marker to the map
+    //marker.bindTooltip("Lewisburg Cemetery").openTooltip();
+
+  var marker_stMary = L.marker([40.784050, -76.538820], {title:"st.Mary Cemetery"}).addTo(map);
+  marker_stMary.bindPopup('<iframe id="iframe" src="./cem_map.html"></iframe>');
+
+  var crossRoad = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+          "style": {
+            weight: 2,
+            color: "#999",
+            opacity: 1,
+            fillColor: "#B19CD9",
+            fillOpacity: 0.8
+        }
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -79.77008700370787,
+              40.43747940085735
+            ],
+            [
+              -79.77118670940399,
+              40.43690778757614
+            ],
+            [
+              -79.77209329605103,
+              40.4362912563753
+            ],
+            [
+              -79.77209329605103,
+              40.436172849073685
+            ],
+            [
+              -79.77159976959229,
+              40.43600544529148
+            ],
+            [
+              -79.76951837539673,
+              40.435429736420026
+            ],
+            [
+              -79.76950764656067,
+              40.436401497468644
+            ],
+            [
+              -79.77008700370787,
+              40.43747940085735
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+};
+
+var stMary = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+          "style": {
+            weight: 2,
+            color: "#999",
+            opacity: 1,
+            fillColor: "#B19CD9",
+            fillOpacity: 0.8
+        }
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -76.54139399528503,
+              40.785188229478685
+            ],
+            [
+              -76.54154419898985,
+              40.78371786189637
+            ],
+            [
+              -76.54298186302185,
+              40.78381534583757
+            ],
+            [
+              -76.5432608127594,
+              40.78365287252276
+            ],
+            [
+              -76.54332518577576,
+              40.783319800984835
+            ],
+            [
+              -76.54317498207091,
+              40.78312483150467
+            ],
+            [
+              -76.5423595905304,
+              40.78314920272099
+            ],
+            [
+              -76.54244542121887,
+              40.781654418240535
+            ],
+            [
+              -76.54065370559692,
+              40.78149600160943
+            ],
+            [
+              -76.54014676809311,
+              40.78169503782867
+            ],
+            [
+              -76.53981685638428,
+              40.78285674753493
+            ],
+            [
+              -76.53958082199097,
+              40.78297048026029
+            ],
+            [
+              -76.53953790664673,
+              40.78348227511445
+            ],
+            [
+              -76.53581500053406,
+              40.783514769892655
+            ],
+            [
+              -76.5356433391571,
+              40.783660996197945
+            ],
+            [
+              -76.53549313545227,
+              40.78444086438884
+            ],
+            [
+              -76.53571844100952,
+              40.78455459440155
+            ],
+            [
+              -76.5391731262207,
+              40.784692694869484
+            ],
+            [
+              -76.54000997543335,
+              40.785115118047536
+            ],
+            [
+              -76.54139399528503,
+              40.785188229478685
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+};
+    L.geoJSON(crossRoad, {style: function (feature) {return feature.properties.style;}}).addTo(map); // Add the geoJson polygon on the map
+    L.geoJSON(stMary, {style: function (feature) {return feature.properties.style;}}).addTo(map);
+
+
+
+
+    
+</script>
+
+</body>
+
+</html>
