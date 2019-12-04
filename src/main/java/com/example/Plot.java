@@ -6,7 +6,7 @@
  * Description: A class to contain our cemetery plot class
  */
 
-package plot;
+package com.example;
 
 import java.util.Date;
 

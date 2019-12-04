@@ -5,7 +5,7 @@
  * Package: TestPlot.java
  * Description: A class to test the editing functions of our Plot class
  */
-package plot;
+package com.example;
 
 import junit.framework.TestCase;
 import org.junit.After;

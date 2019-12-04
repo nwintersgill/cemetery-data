@@ -7,7 +7,7 @@
  * 				readLine, insert to database.
  */
 
-package plot;
+package com.example;
 
 import java.io.*;
 import java.sql.*;
