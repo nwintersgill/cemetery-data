@@ -8,40 +8,50 @@
 
 package plot;
 
+import java.util.Date;
+
 public class Plot {
 
 	String firstName;
 	String lastName;
+	String middleName;
 	String spouse;
-	String location;
+	String plotLocation;
+	String notes;		//Veteran, historical significance, etc
 	int birthYear;
 	int deathYear;
-	int age;
+	Date datePurchased;
 	boolean bought;
 	boolean inUse;
 	int price;
+	
 
 	public Plot() {
 		this.firstName = null;
 		this.lastName = null;
+		this.middleName = null;
 		this.spouse = null;
-		this.location = null;
+		this.plotLocation = null;
+		this.notes = null;
 		this.birthYear = -1;
 		this.deathYear = -1;
-		this.age = -1;
+		this.datePurchased = null;
 		this.bought = false;
 		this.inUse = false;
 		this.price = -1;
 	
 }
-	public Plot(String firstName, String lastName, String spouse, String location, int birthYear, int deathYear, int age, boolean bought, boolean inUse, int price) {
+	@SuppressWarnings("deprecation")
+	public Plot(String firstName, String lastName, String middleName, String spouse, String plotLocation, String notes, int birthYear, int deathYear, String purchaseDate, boolean bought, boolean inUse, int price) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.middleName = middleName;
 		this.spouse = spouse;
-		this.location = location;
+		this.plotLocation = plotLocation;
+		this.notes = notes;
 		this.birthYear = birthYear;
 		this.deathYear = deathYear;
-		this.age = age;
+		this.datePurchased = new Date(purchaseDate);
 		this.bought = bought;
 		this.inUse = inUse;
 		this.price = price;
@@ -60,12 +70,20 @@ public class Plot {
 		return lastName;
 	}
 	
+	public String getMiddleName() {
+		return middleName;
+	}
+	
 	public String getSpouse() {
 		return spouse;
 	}
 	
 	public String getLocation() {
-		return location;
+		return plotLocation;
+	}
+	
+	public String getNotes() {
+		return notes;
 	}
 	
 	public int getBirthYear() {
@@ -76,8 +94,8 @@ public class Plot {
 		return deathYear;
 	}
 	
-	public int getAge() {
-		return age;
+	public Date getDatePurchased() {
+		return datePurchased;
 	}
 	
 	public boolean getBought() {
@@ -101,12 +119,20 @@ public class Plot {
 		this.lastName = lastName;
 	}
 	
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+	
 	public void setSpouse(String spouse) {
 		this.spouse = spouse;
 	}
 	
 	public void setLocation(String location) {
-		this.location = location;
+		this.plotLocation = location;
+	}
+	
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 	
 	public void setBirthYear(int birthYear) {
@@ -116,9 +142,10 @@ public class Plot {
 	public void setDeathYear(int deathYear) {
 		this.deathYear = deathYear;
 	}
-
-	public void setAge(int age) {
-		this.age = age;
+	
+	@SuppressWarnings("deprecation")
+	public void setDatePurchased(String purchaseDate) {
+		this.datePurchased = new Date(purchaseDate);
 	}
 	
 	public void setBought(boolean bought) {
@@ -134,8 +161,8 @@ public class Plot {
 	}
 	@Override
 	public String toString() {
-		String myString = String.format("%-10s %-10s %-20s %-10s %-10s %-10s %-4s %-6s %-6s %-5s", firstName, lastName, spouse, location, Integer.toString(birthYear), Integer.toString(deathYear), Integer.toString(age), Boolean.toString(bought), Boolean.toString(inUse), Integer.toString(price));
-		System.out.println(String.format("%-10s %-10s %-20s %-10s %-10s %-10s %-4s %-6s %-6s %-5s", " First", "Last", "Spouse", "Location", "Birth Year", "Death Year", "Age", "Bought", "In Use", "Price"));
+		String myString = String.format("%-10s %-10s %-10s %-20s %-8s %-15s %-4s %-4s %-20s %-6s %-6s %-5s", this.firstName, this.lastName, this.middleName, this.spouse, this.plotLocation, this.notes, Integer.toString(this.birthYear), Integer.toString(this.deathYear), this.datePurchased, Boolean.toString(this.bought), Boolean.toString(this.inUse), Integer.toString(this.price));
+		System.out.println(String.format("%-10s %-10s %-10s %-20s %-8s %-15s %-4s %-4s %-20s %-6s %-6s %-5s", "First Name", "Last Name", "Mid Name", "Spouse Name", "Location", "Notes", "Birth Year", "Death Year", "Date Bought", "Bought", "In Use", "Price"));
 		return myString;
 	}
 	

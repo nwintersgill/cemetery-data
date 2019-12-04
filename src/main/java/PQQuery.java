@@ -2,14 +2,15 @@
  * Name: Team Reaper - Nina Benson, Nathan Wintersgill, Joe Yu, Lucas Morgan
  * Date: 10/25/2019
  * 
- * Package: DataSource.java
- * Description:
+ * Package: PQQuery.java
+ * Description: Functions to interact with the database including connect to the database, 
+ * 				readLine, insert to database.
  */
+
 package plot;
 
 import java.io.*;
 import java.sql.*;
-
 
 public class PQQuery {
 	 public static void main(String argv[])    {
@@ -93,6 +94,7 @@ public class PQQuery {
 	 */
 
 	    public static void insertToDB(Connection db, String fileName, String tblName)  {
+	    	
 	    	String curString = "";
 			try  {
 				//creates an instance of the database to insert

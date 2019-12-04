@@ -32,11 +32,15 @@ public class TestPlot extends TestCase {
 	public void testSetName() {
 		String first = "John";
 		String last = "Doe";
+		String middle = "Joe";
 		String spouse = "Jane Doe";
 		Plot plot = new Plot();
 		
 		plot.setFirstName("John");
 		assertEquals(plot.getFirstName(), first);
+		
+		plot.setMiddleName("Joe");
+		assertEquals(plot.getMiddleName(), middle);
 		
 		plot.setLastName("Doe");
 		assertEquals(plot.getLastName(), last);
@@ -44,7 +48,7 @@ public class TestPlot extends TestCase {
 		plot.setSpouse("Jane Doe");
 		assertEquals(plot.getSpouse(), spouse);
 		
-		System.out.println("First Name, Last Name, Spouse was successful.");
+		System.out.println("First Name, Middle Name, Last Name, Spouse was successful.");
 	}
 
 	/** 
@@ -52,20 +56,17 @@ public class TestPlot extends TestCase {
 	 * specified plot
 	 */
 	@Test
-	public void testAge() {
+	public void testYears() {
 		int birthYear = 2000;
 		int deathYear = 2019;
-		int age = 19;
 		Plot plot = new Plot();
 		
 		plot.setBirthYear(2000);
 		assertEquals(plot.getBirthYear(), birthYear);
 		plot.setDeathYear(2019);
 		assertEquals(plot.getDeathYear(), deathYear);
-		plot.setAge(19);
-		assertEquals(plot.getAge(), age);
 		
-		System.out.println("Birth, Death Years and Age was successful.");
+		System.out.println("Birth and Death Years were successful.");
 	}
 	
 	/**
@@ -103,10 +104,15 @@ public class TestPlot extends TestCase {
 	@Test
 	public void testLocation() {
 		String location = "A-3";
+		String notes = "vetran";
 		Plot plot = new Plot();
 		
 		plot.setLocation(location);
 		assertEquals(plot.getLocation(), "A-3");
-		System.out.println("Set, get Location was successsful.");
+		
+		plot.setNotes("vetran");
+		assertEquals(plot.getNotes(), notes);
+		
+		System.out.println("Location, notes were successsful.");
 	}
 }
