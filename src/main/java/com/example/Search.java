@@ -1,23 +1,12 @@
-/**
- * Name: Team Reaper - Nina Benson, Nathan Wintersgill, Joe Yu, Lucas Morgan
- * Date: 12/2/2019
- * 
- * Package: Search.java
- * Description: A class to contain the search function of the plot table within our database
- * 				Searches through first and last names if a string is the input
- * 				Searches through birth and death years if an integer is the input
- */
-
-package plot;
+package com.example;
 
 import java.util.*;
 import java.sql.*;
 
 public class Search {
 	
-	//iterate through the first name and last name in the database
-	public void SearchName(String name) {
-		
+	//iterate through the first name, last name, or spouses name in the database
+	public Search(String name) {
 		//initialize the connection and statements 
 		Connection dbConnection = PQQuery.connectDB();
 		PreparedStatement firstSearch;
@@ -62,7 +51,7 @@ public class Search {
 	}
 	
 	//iterate through the birth year and death year
-	public void SearchYear (int year) {
+	public Search(int year) {
 		//initialize connection and statements
 		Connection dbConnection = PQQuery.connectDB();
 		PreparedStatement bYearSearch;
