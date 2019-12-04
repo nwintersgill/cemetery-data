@@ -1,3 +1,13 @@
+/**
+ * Name: Team Reaper - Nina Benson, Nathan Wintersgill, Joe Yu, Lucas Morgan
+ * Date: 12/2/2019
+ * 
+ * Package: Search.java
+ * Description: A class to contain the search function of the plot table within our database
+ * 				Searches through first and last names if a string is the input
+ * 				Searches through birth and death years if an integer is the input
+ */
+
 package com.example;
 
 import java.util.*;
