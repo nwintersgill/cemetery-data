@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(urlPatterns="/searchServlet", name="searchHandler")
+@WebServlet(urlPatterns="/search", name="searchHandler")
 public class SearchServlet extends HttpServlet {
 
     @Override
-    public void doPost (HttpServletRequest request,
+    public void doGet (HttpServletRequest request,
                        HttpServletResponse response)
         throws ServletException, IOException
     {
@@ -26,11 +26,12 @@ public class SearchServlet extends HttpServlet {
                     "<head><title>Search Results</title></head>");
 
         //Get the identifier of the item
-        String firstName = request.getParameter("FirstName");
-        if (firstName != null) {
-            out.println(firstName);
-        }
+        //String firstName = request.getParameter("FirstName");
+        //if (firstName != null) {
+            //out.println(firstName);
+        //}
         out.println("</body></html>");
+        out.flush();
         out.close();
     }
 }
