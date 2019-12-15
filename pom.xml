@@ -88,6 +88,16 @@
     </dependency>
   </dependencies>
 
+  <servlet>
+    <servlet-name>searchServlet</servlet-name>
+    <servlet-class>SearchServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>searchServlet</servlet-name>
+    <url-pattern>/searchServlet</url-pattern>
+  </servlet-mapping>
+
   <build>
     <plugins>
       <plugin>
