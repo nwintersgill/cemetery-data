@@ -86,17 +86,13 @@
       <artifactId>junit</artifactId>
       <version>4.13-rc-1</version>
     </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
-
-  <servlet>
-    <servlet-name>searchServlet</servlet-name>
-    <servlet-class>SearchServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>searchServlet</servlet-name>
-    <url-pattern>/searchServlet</url-pattern>
-  </servlet-mapping>
 
   <build>
     <plugins>
