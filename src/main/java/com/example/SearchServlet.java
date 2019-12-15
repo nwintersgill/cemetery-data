@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name="SearchServlet", urlPatterns="/search")
+@WebServlet(name="searchServlet", urlPatterns="/search")
 public class SearchServlet extends HttpServlet {
 
     @Override
