@@ -1,10 +1,5 @@
 package com.example;
 
-import org.springframework.web.WebApplicationInitializer;
-import javax.servlet.ServletException;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import javax.servlet.ServletRegistration.Dynamic;
-
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.context.annotation.Configuration;
 //import org.springframework.web.servlet.config.annotation.Configuration;

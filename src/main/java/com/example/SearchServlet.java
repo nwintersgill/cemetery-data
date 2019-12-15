@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name="searchServlet", urlPatterns="/search")
+@WebServlet(urlPatterns="/searchServlet", name="searchHandler")
 public class SearchServlet extends HttpServlet {
 
     @Override
-    public void doGet (HttpServletRequest request,
+    public void doPost (HttpServletRequest request,
                        HttpServletResponse response)
         throws ServletException, IOException
     {
