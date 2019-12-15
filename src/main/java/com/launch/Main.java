@@ -39,6 +39,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/*
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
 import org.apache.catalina.core.StandardContext;
@@ -48,6 +49,9 @@ import org.apache.catalina.webresources.EmptyResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
 import org.apache.tomcat.util.scan.Constants;
 import org.apache.tomcat.util.scan.StandardJarScanFilter;
+*/
+
+import com.servlet.SearchServlet;
 
 @Controller
 @SpringBootApplication
@@ -61,6 +65,7 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
     System.out.println("HERE");
+    SearchServlet search = new SearchServlet();
     SpringApplication.run(Main.class, args);
   }
 
