@@ -8,7 +8,7 @@
  * 				Searches through birth and death years if an integer is the input
  */
 
-package com.example;
+package com.data;
 
 import java.util.*;
 import java.sql.*;
