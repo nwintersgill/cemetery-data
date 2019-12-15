@@ -53,6 +53,7 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
     System.out.println("HERE");
+    /*
     String webappDirLocation = "src/main/webapp/";
         Tomcat tomcat = new Tomcat();
 
@@ -78,6 +79,7 @@ public class Main {
 
         tomcat.start();
         tomcat.getServer().await();
+        */
     SpringApplication.run(Main.class, args);
   }
 
