@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name="BookDetailServlet", urlPatterns="/search")
-public class BookDetailServlet extends HttpServlet {
+@WebServlet(name="SearchServlet", urlPatterns="/search")
+public class SearchServlet extends HttpServlet {
 
     @Override
     public void doGet (HttpServletRequest request,
@@ -23,12 +23,12 @@ public class BookDetailServlet extends HttpServlet {
 
     // then write the response
         out.println("<html>" +
-                    "<head><title>Book Description</title></head>");
+                    "<head><title>Search Results</title></head>");
 
         //Get the identifier of the item
         String firstName = request.getParameter("FirstName");
         if (firstName != null) {
-            // and the information about the item and print it
+            out.println(firstName);
         }
         out.println("</body></html>");
         out.close();
