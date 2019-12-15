@@ -7,13 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
-
+@WebServlet(name="BookDetailServlet", urlPatterms="/search")
 public class BookDetailServlet extends HttpServlet {
 
+    @Override
     public void doGet (HttpServletRequest request,
                        HttpServletResponse response)
         throws ServletException, IOException
     {
+        System.out.println("HANDLING");
     // set content-type header before accessing the Writer
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
