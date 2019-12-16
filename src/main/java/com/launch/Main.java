@@ -25,6 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -54,6 +55,7 @@ import org.apache.tomcat.util.scan.StandardJarScanFilter;
 import com.servlet.SearchServlet;
 
 @Controller
+@ServletComponentScan
 @SpringBootApplication
 public class Main {
 
@@ -65,7 +67,7 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
     System.out.println("HERE");
-    SearchServlet search = new SearchServlet();
+    //SearchServlet search = new SearchServlet();
     SpringApplication.run(Main.class, args);
   }
 
