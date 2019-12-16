@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example;
+package com.launch;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -25,6 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -34,7 +35,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import com.servlet.SearchServlet;
+
 @Controller
+@ServletComponentScan(basePackages = "com.servlet")
 @SpringBootApplication
 public class Main {
 

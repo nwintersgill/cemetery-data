@@ -7,7 +7,7 @@
  * 				readLine, insert to database.
  */
 
-package com.example;
+package com.data;
 
 import java.io.*;
 import java.sql.*;
