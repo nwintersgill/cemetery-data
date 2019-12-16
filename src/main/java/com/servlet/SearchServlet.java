@@ -23,7 +23,11 @@ public class SearchServlet extends HttpServlet {
 
     // then write the response
         out.println("<html>" +
-                    "<head><title>Search Results</title></head>");
+                    "<head><title>Search Results</title>" + 
+                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css\" />" + 
+                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheets/main.css\" /></head>" +
+                    "<h1>Search Results</h1>" + 
+                    "<body>");
 
         //Get the identifier of the item
         //String firstName = request.getParameter("FirstName");
