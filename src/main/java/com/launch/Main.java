@@ -55,7 +55,7 @@ import org.apache.tomcat.util.scan.StandardJarScanFilter;
 import com.servlet.SearchServlet;
 
 @Controller
-@ServletComponentScan
+@ServletComponentScan(basePackages = "com.servlet")
 @SpringBootApplication
 public class Main {
 
