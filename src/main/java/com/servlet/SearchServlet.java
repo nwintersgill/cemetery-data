@@ -8,6 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
+/* TODO get thymleaf working so we can use fragments
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.TemplateMode;
+import org.thymeleaf.context.WebContext;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+*/
+
 @WebServlet(urlPatterns="/search", name="searchHandler")
 public class SearchServlet extends HttpServlet {
 
