@@ -23,7 +23,6 @@ public class SearchServlet extends HttpServlet {
                        HttpServletResponse response)
         throws ServletException, IOException
     {
-        System.out.println("HANDLING");
     // set content-type header before accessing the Writer
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
