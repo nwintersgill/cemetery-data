@@ -12,6 +12,8 @@
    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
    crossorigin=""></script>
 
+   <script src="./mapGeneration.js"></script>
+
 <style>
 #map {
     width: 300px;
@@ -27,6 +29,7 @@
 
 <script>
     var base = {'Empty': L.tileLayer('')};
+    var green = colorCode[0], yellow = colorCode[2], red = colorCode[1];
 
     var map = L.map('map',{'center': [0, 0], 'zoom': 15, 'layers': [base.Empty], 'zoomControl': false, 'attributionControl': false});
     map.touchZoom.disable();
@@ -41,17 +44,15 @@
     var cellWidth = mapWidth / countX;
     var cellHeight = mapHeight / countY;
 
-    //console.log(cellWidth, cellHeight, mapWidth, mapHeight);
     var coordinates = [],
     curX = map.getBounds().getNorthWest().lng, curY = map.getBounds().getNorthWest().lat, //cursor
     //top-left/top-right/bottom-right/bottom-left
     tLx, tLy,   tRx, tRy,
     bRx, bRy,   bLx, bLy;
 
-    var green = '#49FF00', red = '#FF0000', yellow = '#FFD500';
-
-    var grid, counter;
+    var grid, counter, gridFeat;
     counter = 0;
+    var gridCollection = [];
 // build coordinates array, from top-left to bottom-right
 // count by row
     for(var iY = 0; iY < countY; iY++){
@@ -67,14 +68,14 @@
             [tLx, tLy], [tRx, tRy], [bRx, bRy], [bLx, bLy], [tLx, tLy]
             ];
             var color;
-            fillColor = yellow;
+            fillColor = yellow;//
             if (counter > 25 && counter < 53){
-                fillColor = green;
+                fillColor = green;//
             }
             else if (counter == 65){
-                fillColor = red;
+                fillColor = red;//
             } 
-            grid = {
+            gridFeat = {
                 "type": "FeatureCollection",
                 "features": [
                     {
@@ -97,7 +98,8 @@
                 }
                 ]
             };
-            L.geoJSON(grid, {style: function (feature) {return feature.properties.style;}, onEachFeature: function (feature, layer) {layer.bindPopup(feature.properties.popupContent)}}).addTo(map);
+            grid = L.geoJSON(gridFeat, {style: function (feature) {return feature.properties.style;}, onEachFeature: function (feature, layer) {layer.bindPopup(feature.properties.popupContent)}});
+            gridCollection.push(grid);
             // refresh cusror for cell
             curX = curX + cellWidth;
             counter += 1;
@@ -107,16 +109,11 @@
         curY = curY - cellHeight;
     }
 
-    var popup = L.popup();
-
-
-    /*function onMapClick(e){
-        popup
-        .setLatLng(e.latlng)
-        .setContent(e.latlng.toString())
-        .openOn(map);
+    //var popup = L.popup();
+    for (var i = 0; i < gridCollection.length; i++){
+        gridCollection[i].addTo(map);
     }
-    map.on('click', onMapClick);// Test Purpose*/
+    
 
     
 </script>
