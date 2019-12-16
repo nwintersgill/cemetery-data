@@ -31,6 +31,10 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+hr {
+  border-color: black;
+}
+
 .results h3 {
   color: black;
 }

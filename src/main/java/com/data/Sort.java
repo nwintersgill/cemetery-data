@@ -6,7 +6,7 @@
  * Description: A class to contain the sort function of the plot table within our database
  */
 
-package com.example;
+package com.data;
 
 import java.sql.*;
 
