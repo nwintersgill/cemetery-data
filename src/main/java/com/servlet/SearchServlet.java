@@ -98,7 +98,9 @@ public class SearchServlet extends HttpServlet {
 
 
  
-        result.println("<h1>Search Results</h1>" + 
+        result.println(
+                        "<div class=\"container\">" +
+                        "<h1>Search Results</h1>" + 
                         "<hr>");
 
         result.println("<ul>");
@@ -109,31 +111,35 @@ public class SearchServlet extends HttpServlet {
         String born = request.getParameter("YearBorn");
         String died = request.getParameter("YearDied");
         result.println("<li>");
-        if (firstName != null) {
+        if (firstName != null && !firstName.equals("")) {
             result.println(firstName + " ");
         }
-        if (middleName != null) {
+        if (middleName != null && !middleName.equals("")) {
             result.println(middleName + " ");
         }
-        if (lastName != null) {
-            if (born != null) {
+        if (lastName != null && !lastName.equals("")) {
+            if ((born != null && !born.equals("")) || (died != null && !died.equals(""))) {
                 result.println(lastName + ", ");
             } else{
                 result.println(lastName + " ");
             }
         }
-        if (born != null) {
-            if (died != null) {
+        if (born != null && !born.equals("")) {
+            if (died != null && !died.equals("")) {
                 result.println("Born " + born + ", ");
             } else {
                 result.println("Born " + born + " ");
             }
         }
-        if (died != null) {
+        if (died != null && !died.equals("")) {
             result.println("Died " + died);
         }
-        result.println("</li>");
-        result.println("</ul>");
+
+        result.println(
+                        "</li>" + 
+                        "</ul>" +
+                        "</div>");
+
 
         result.println("</body>");
         result.println("<script>" + 
