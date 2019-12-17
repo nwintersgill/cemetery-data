@@ -259,6 +259,8 @@ public class Search {
 					
 					plotList.add(curPlot);
 				}
+			} else {
+				return plotList;
 			}
 		} catch (SQLException e) {
 			System.out.println("SQLException, exiting ...");

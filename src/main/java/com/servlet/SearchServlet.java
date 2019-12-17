@@ -113,20 +113,26 @@ public class SearchServlet extends HttpServlet {
         String born = request.getParameter("YearBorn");
         String died = request.getParameter("YearDied");
 
+        System.out.println("BORN: " + born);
+        System.out.println("DIED: " + died);
 
         Plot searchTerms = new Plot();
         searchTerms.setFirstName(firstName);
         searchTerms.setMiddleName(middleName);
         searchTerms.setLastName(lastName);
         try {
-            searchTerms.setBirthYear(Integer.parseInt(born)); // TODO add checks to make sure they're integers
+            searchTerms.setBirthYear(Integer.parseInt(born));
+            System.out.println("BORN NUMBER");
         } catch (NumberFormatException e) {
+            System.out.println("BORN NOT NUMBER");
             searchTerms.setBirthYear(-1);
         }
         try {
             searchTerms.setDeathYear(Integer.parseInt(died));
+            System.out.println("DIED NUMBER");
         } catch(NumberFormatException e) {
             searchTerms.setBirthYear(-1);
+            System.out.println("DIED NOT NUMBER");
         }
 
         ArrayList<Plot> plotList;
