@@ -118,13 +118,21 @@ public class SearchServlet extends HttpServlet {
         searchTerms.setFirstName(firstName);
         searchTerms.setMiddleName(middleName);
         searchTerms.setLastName(lastName);
-        searchTerms.setBirthYear(Integer.parseInt(born)); // TODO add checks to make sure they're integers
-        searchTerms.setDeathYear(Integer.parseInt(died));
+        try {
+            searchTerms.setBirthYear(Integer.parseInt(born)); // TODO add checks to make sure they're integers
+        } catch (NumberFormatException e) {
+            searchTerms.setBirthYear(-1);
+        }
+        try {
+            searchTerms.setDeathYear(Integer.parseInt(died));
+        } catch(NumberFormatException e) {
+            searchTerms.setBirthYear(-1);
+        }
 
         ArrayList<Plot> plotList;
-        //plotList = SearchDB(searchTerms);
-        plotList = new ArrayList<>();
-        plotList.add(searchTerms);
+        plotList = Search.SearchDB(searchTerms);
+        //plotList = new ArrayList<>();
+        //plotList.add(searchTerms);
 
 
         if (plotList.isEmpty()) {

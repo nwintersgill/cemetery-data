@@ -63,22 +63,22 @@ public class PQQuery {
 							   "mysql", "123");
 			*/
 
-			String user, pass;
-			String url = System.getenv("JDBC_DATABASE_URL");
+			//String user, pass;
+			String url = System.getenv("DATABASE_URL");
 
-			System.out.print("enter user name and password in one line, separated by a space : ");
-			String info = readLine();
+			//System.out.print("enter user name and password in one line, separated by a space : ");
+			//String info = readLine();
 
-			int split = info.indexOf(' ');
-			user = info.substring(0, split);
-			pass = info.substring(split+1);
+			//int split = info.indexOf(' ');
+			//user = info.substring(0, split);
+			//pass = info.substring(split+1);
 			Connection db = null;
 			try  {
 				//	    System.out.println(url+" "+user+" "+pass);
-				System.out.println(url+"  user_name pass_word");
-				db = DriverManager.getConnection(url, user, pass);
+				System.out.println("URL: " + url);
+				db = DriverManager.getConnection(url);
 			}  catch (SQLException e) {
-				System.out.println("SQLException, exiting ...");
+				System.out.println("SQLException when connecting, exiting ...");
 				System.exit(1);
 			}
 			return db;

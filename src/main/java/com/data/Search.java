@@ -16,7 +16,7 @@ import java.sql.*;
 public class Search {
 	
 	//iterate through the first, middle, and last names in the database
-	public ArrayList<Plot> SearchDB(Plot plot) {
+	public static ArrayList<Plot> SearchDB(Plot plot) {
 		//initialize the connection and statements 
 		Connection dbConnection = PQQuery.connectDB();
 		PreparedStatement firstSearch;
