@@ -11,7 +11,15 @@ package com.data;
 
 import java.io.*;
 import java.sql.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+import org.apache.commons.dbcp2.BasicDataSource;
+
+
+@Configuration
 public class PQQuery {
 	 public static void main(String argv[])    {
 		 
@@ -63,26 +71,46 @@ public class PQQuery {
 							   "mysql", "123");
 			*/
 
-			//String user, pass;
-			String url = System.getenv("DATABASE_URL");
-
-			//System.out.print("enter user name and password in one line, separated by a space : ");
-			//String info = readLine();
-
-			//int split = info.indexOf(' ');
-			//user = info.substring(0, split);
-			//pass = info.substring(split+1);
 			Connection db = null;
+			
 			try  {
+				BasicDataSource source = dataSource();
 				//	    System.out.println(url+" "+user+" "+pass);
-				System.out.println("URL: " + url);
-				db = DriverManager.getConnection(url);
+				//		System.out.println("URL: " + url);
+				db = source.getConnection();
 			}  catch (SQLException e) {
 				System.out.println("SQLException when connecting, exiting ...");
+				System.exit(1);
+			} catch (URISyntaxException e) {
+				System.out.println("URISyntaxException when connecting, exiting ...");
 				System.exit(1);
 			}
 			return db;
 	    }
+
+	    @Bean
+    	public static BasicDataSource dataSource() throws URISyntaxException {
+    		// If mysql database is installed on a local host, do this
+			// Otherwise see the rest of the function
+			/*
+			c = DriverManager
+				.getConnection("jdbc:mysql://localhost:5432/testdb",
+							   "mysql", "123");
+			*/
+
+        	URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+        	String username = dbUri.getUserInfo().split(":")[0];
+        	String password = dbUri.getUserInfo().split(":")[1];
+        	String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+
+        	BasicDataSource basicDataSource = new BasicDataSource();
+        	basicDataSource.setUrl(dbUrl);
+        	basicDataSource.setUsername(username);
+        	basicDataSource.setPassword(password);
+
+        	return basicDataSource;
+    	}
 
 	/*
 	 * public static void createDB(Connection db, String tblName) {
