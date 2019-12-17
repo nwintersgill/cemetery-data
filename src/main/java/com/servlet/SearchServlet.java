@@ -170,35 +170,30 @@ public class SearchServlet extends HttpServlet {
         String born = Integer.toString(plot.getBirthYear());
         String died = Integer.toString(plot.getDeathYear());
 
-        if (isValid(firstName)) {
+        if (Search.isValid(firstName)) {
             out.println(firstName + " ");
         }
-        if (isValid(middleName)) {
+        if (Search.isValid(middleName)) {
             out.println(middleName + " ");
         }
-        if (isValid(lastName)) {
-            if (isValid(born) || isValid(died)) {
+        if (Search.isValid(lastName)) {
+            if (Search.isValid(born) || Search.isValid(died)) {
                 out.println(lastName + ", ");
             } else{
                 out.println(lastName + " ");
             }
         }
-        if (isValid(born)) {
-            if (isValid(died)) {
+        if (Search.isValid(born)) {
+            if (Search.isValid(died)) {
                 out.println("Born " + born + ", ");
             } else {
                 out.println("Born " + born + " ");
             }
         }
-        if (isValid(died)) {
+        if (Search.isValid(died)) {
             out.println("Died " + died);
         }
     }
 
-    private boolean isValid(String s) {
-        if (s != null && !s.equals("")) {
-            return true;
-        }
-        return false;
-    }
+
 }
