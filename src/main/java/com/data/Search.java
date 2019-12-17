@@ -19,7 +19,6 @@ public class Search {
 	public static ArrayList<Plot> SearchDB(Plot plot) {
 		//initialize the connection and statements 
 		Connection dbConnection = PQQuery.connectDB();
-		System.out.println("CONNECTED");
 		PreparedStatement firstSearch;
 		PreparedStatement middleSearch;
 		PreparedStatement lastSearch;
