@@ -122,17 +122,17 @@ public class SearchServlet extends HttpServlet {
         searchTerms.setLastName(lastName);
         try {
             searchTerms.setBirthYear(Integer.parseInt(born));
-            System.out.println("BORN NUMBER");
+            System.out.println("BORN NUMBER: " + born);
         } catch (NumberFormatException e) {
-            System.out.println("BORN NOT NUMBER");
+            System.out.println("BORN NOT NUMBER: -1");
             searchTerms.setBirthYear(-1);
         }
         try {
             searchTerms.setDeathYear(Integer.parseInt(died));
-            System.out.println("DIED NUMBER");
+            System.out.println("DIED NUMBER: " + died);
         } catch(NumberFormatException e) {
-            searchTerms.setBirthYear(-1);
-            System.out.println("DIED NOT NUMBER");
+            searchTerms.setDeathYear(-1);
+            System.out.println("DIED NOT NUMBER: -1");
         }
 
         ArrayList<Plot> plotList;
