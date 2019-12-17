@@ -161,8 +161,9 @@ public class Plot {
 	}
 	@Override
 	public String toString() {
-		String myString = String.format("%-10s %-10s %-10s %-20s %-8s %-15s %-4s %-4s %-20s %-6s %-6s %-5s", this.firstName, this.lastName, this.middleName, this.spouse, this.plotLocation, this.notes, Integer.toString(this.birthYear), Integer.toString(this.deathYear), this.datePurchased, Boolean.toString(this.bought), Boolean.toString(this.inUse), Integer.toString(this.price));
-		System.out.println(String.format("%-10s %-10s %-10s %-20s %-8s %-15s %-4s %-4s %-20s %-6s %-6s %-5s", "First Name", "Last Name", "Mid Name", "Spouse Name", "Location", "Notes", "Birth Year", "Death Year", "Date Bought", "Bought", "In Use", "Price"));
+		String myString = this.firstName + " " + this.middleName + " " + this.lastName + " " + 
+				this.spouse + " " + this.plotLocation + " " + this.notes + " " + this.birthYear 
+				+ " " + this.deathYear; 
 		return myString;
 	}
 	
