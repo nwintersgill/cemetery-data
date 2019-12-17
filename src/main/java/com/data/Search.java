@@ -271,11 +271,11 @@ public class Search {
 				System.out.println("LOCATION: " + curPlot.getLocation());
 				System.out.println("BIRTH YEAR: " + curPlot.getBirthYear());
 				System.out.println("DEATH YEAR: " + curPlot.getDeathYear());
-				if (isValid(middleName) || curPlot.getLastName().equalsIgnoreCase(lastName)) {
+				if (!isValid(lastName) || curPlot.getLastName().equalsIgnoreCase(lastName)) {
 					System.out.println("ACCESSING MIDDLE NAME");
-					if (isValid(middleName) || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
+					if (!isValid(middleName) || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
 						System.out.println("ACCESSING LOCATION");
-						if (isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
+						if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
 							System.out.println("ACCESSING BIRTH YEAR");
 							if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
 								System.out.println("ACCESSING DEATH YEAR");
@@ -291,8 +291,8 @@ public class Search {
 		else if (record.equalsIgnoreCase("last")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (isValid(middleName) || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
-					if (isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
+				if (!isValid(middleName) || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
+					if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
 						if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
 							if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 								finalList.add(curPlot);
@@ -305,7 +305,7 @@ public class Search {
 		else if (record.equalsIgnoreCase("middle")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
+				if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
 					if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
 						if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 							finalList.add(curPlot);
