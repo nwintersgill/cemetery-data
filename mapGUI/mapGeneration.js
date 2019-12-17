@@ -10,11 +10,11 @@ const colorCode = [green = '#49FF00', red = '#FF0000', yellow = '#FFD500'];
       return map;
     }
 
-    function addCemetery(map, title, icon, location, mini_map){
+    function addCemetery(map, title, icon, location){
       var marker;
       try{
         marker = L.marker(location, {icon: icon, title: title}).addTo(map);
-        marker.bindPopup('<iframe id="iframe" src=' + mini_map + '></iframe>'); // Add a marker to the map
+        marker.bindPopup('This is ' + title); // Add a marker to the map
         return marker;
       }
       catch (error){

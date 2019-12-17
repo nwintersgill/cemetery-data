@@ -6,7 +6,7 @@
 
 <head>
 
-<title>Leaflet Web Map</title>
+<title>st.Mary Cemetery Map</title>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -19,7 +19,6 @@
    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> <!-- header from turf.js -->
 
    <script type="text/javascript" src="mapGeneration.js"></script>
-   <script type="text/javascript" src="dbConnection.js"></script>
 
 <style>
 #map {
@@ -46,10 +45,10 @@
     var green = colorCode[0], yellow = colorCode[2], red = colorCode[1];
 
     // define the center point of the map
-    var crossRoad_point = [40.436470, -79.770541], zoom = 15;
+    var stMary_point = [40.784050, -76.538820], zoom = 15;
 
     //generate the map
-    greatMap = mapGen(crossRoad_point, zoom);
+    greatMap = mapGen(stMary_point, zoom);
 
     var popup = L.popup();
 
@@ -69,42 +68,7 @@
       popupAnchor:  [3, -60] // point from which the popup should open relative to the iconAnchor
     });
 
-    var marker_crossroad = addCemetery(greatMap, "Crossroads Cemetery", graveIcon, [40.436470, -79.770541], "./cem_map_cr.html" );
-    var marker_stMary= addCemetery(greatMap, "st.Mary Cemetery", graveIcon, [40.784050, -76.538820], "./cem_map_stmary.html");
-
-
-  var crossRoad_coordinate =  [[
-              -79.77008700370787,
-              40.43747940085735
-            ],
-            [
-              -79.77118670940399,
-              40.43690778757614
-            ],
-            [
-              -79.77209329605103,
-              40.4362912563753
-            ],
-            [
-              -79.77209329605103,
-              40.436172849073685
-            ],
-            [
-              -79.77159976959229,
-              40.43600544529148
-            ],
-            [
-              -79.76951837539673,
-              40.435429736420026
-            ],
-            [
-              -79.76950764656067,
-              40.436401497468644
-            ],
-            [
-              -79.77008700370787,
-              40.43747940085735
-            ]];
+    var marker_stMary= addCemetery(greatMap, "st.Mary Cemetery", graveIcon, [40.784050, -76.538820]);
 
   var stMary_coordinate = [
             [
@@ -201,66 +165,8 @@
             ]
           ];
 
-
-  var feat_crossRoad = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-          "style": {
-            weight: 2,
-            color: "#999",
-            opacity: 1,
-            fillColor: "#B19CD9",
-            fillOpacity: 0.8
-        }
-    },
-    "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-           crossRoad_coordinate
-        ]
-      }
-    }
-  ]
-};
-
-var feat_stMary = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-          "style": {
-            weight: 2,
-            color: "#999",
-            opacity: 1,
-            fillColor: "#B19CD9",
-            fillOpacity: 0.8
-        }
-    },
-    "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          stMary_coordinate
-        ]
-      }
-    }
-  ]
-};
-    var crossRoad = L.geoJSON(feat_crossRoad, {style: function (feature) {return feature.properties.style;}}); // Add the geoJson polygon on the map
-    var stMary = L.geoJSON(feat_stMary, {style: function (feature) {return feature.properties.style;}});
-
-    crossRoad.addTo(greatMap);
-    stMary.addTo(greatMap);
-
-    var cr_grid = addGrid(20, 20, crossRoad_coordinate);
     var stMary_grid = addGrid(20, 20, stMary_coordinate);
 
-    for (var i = 0; i < cr_grid.length; i++){
-          cr_grid[i].addTo(greatMap);
-    }
     for (i = 0; i < stMary_grid.length; i++){
           stMary_grid[i].addTo(greatMap);
     }
