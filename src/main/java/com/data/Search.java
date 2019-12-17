@@ -266,11 +266,11 @@ public class Search {
 		if (record.equalsIgnoreCase("first")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getLastName().equalsIgnoreCase(lastName) || lastName == null) {
-					if (curPlot.getMiddleName().equalsIgnoreCase(middleName) || middleName == null) {
-						if (curPlot.getLocation().equalsIgnoreCase(location) || location == null) {
-							if (curPlot.getBirthYear() == birthYear || birthYear == -1) {
-								if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (lastName == null || curPlot.getLastName().equalsIgnoreCase(lastName)) {
+					if (middleName == null || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
+						if (location == null || curPlot.getLocation().equalsIgnoreCase(location)) {
+							if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
+								if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 									finalList.add(curPlot);
 								}
 							}
@@ -282,10 +282,10 @@ public class Search {
 		else if (record.equalsIgnoreCase("last")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getMiddleName().equalsIgnoreCase(middleName) || middleName == null) {
-					if (curPlot.getLocation().equalsIgnoreCase(location) || location == null) {
-						if (curPlot.getBirthYear() == birthYear || birthYear == -1) {
-							if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (middleName == null || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
+					if (location == null || curPlot.getLocation().equalsIgnoreCase(location)) {
+						if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
+							if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 								finalList.add(curPlot);
 							}
 						}
@@ -296,9 +296,9 @@ public class Search {
 		else if (record.equalsIgnoreCase("middle")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getLocation().equalsIgnoreCase(location) || location == null) {
-					if (curPlot.getBirthYear() == birthYear || birthYear == -1) {
-						if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (location == null || curPlot.getLocation().equalsIgnoreCase(location)) {
+					if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
+						if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 							finalList.add(curPlot);
 						}
 					}
@@ -308,8 +308,8 @@ public class Search {
 		else if (record.equalsIgnoreCase("location")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getBirthYear() == birthYear || birthYear == -1) {
-					if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
+					if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 						finalList.add(curPlot);
 					}
 				}
@@ -318,7 +318,7 @@ public class Search {
 		else if (record.equalsIgnoreCase("birth")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 					finalList.add(curPlot);
 				}
 			}
