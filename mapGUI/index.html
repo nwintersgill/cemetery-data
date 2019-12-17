@@ -16,7 +16,10 @@
    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
    crossorigin=""></script> <!-- header from leaflet -->
 
+   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> <!-- header from turf.js -->
+
    <script type="text/javascript" src="mapGeneration.js"></script>
+   <script type="text/javascript" src="dbConnection.js"></script>
 
 <style>
 #map {
@@ -39,16 +42,8 @@
     <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 <script>
-    /*Setting up connection to the postgres database*/
-    /*function connectDB(){
-      var pg = require('pg');
-      var url = System.getenv("JDBC_DATABASE_URL");
-      var pgClient = new pg.Client(url);
-      pgClient.connect().
-              then(() => console.log('connected'))
-              .catch(err => console.error('connection error', err.stack));
-    }*/
 
+    var green = colorCode[0], yellow = colorCode[2], red = colorCode[1];
 
     // define the center point of the map
     var crossRoad_point = [40.436470, -79.770541], zoom = 15;
@@ -259,6 +254,19 @@ var feat_stMary = {
 
     crossRoad.addTo(greatMap);
     stMary.addTo(greatMap);
+
+    var cr_grid = addGrid(20, 20, crossRoad_coordinate);
+    var stMary_grid = addGrid(20, 20, stMary_coordinate);
+
+    for (var i = 0; i < cr_grid.length; i++){
+          cr_grid[i].addTo(greatMap);
+    }
+    for (i = 0; i < stMary_grid.length; i++){
+          stMary_grid[i].addTo(greatMap);
+    }
+
+
+
 
 
 
