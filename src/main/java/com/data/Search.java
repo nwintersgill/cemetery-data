@@ -38,6 +38,8 @@ public class Search {
 		int birthYear = plot.getBirthYear();
 		int deathYear = plot.getDeathYear();
 		
+		System.out.println("BIRTH YEAR = " + birthYear);
+		System.out.println("DEATH YEAR = " + deathYear);
 		//return our results
 		ArrayList<Plot> plotList = new ArrayList<>();
 		ArrayList<Plot> finalList = new ArrayList<>();
