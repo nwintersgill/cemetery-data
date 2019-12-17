@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
+import java.util.ArrayList;
+
+import com.data.Plot;
+import com.data.Search;
+
 /* TODO get thymleaf working so we can use fragments
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.TemplateMode;
@@ -77,14 +82,11 @@ public class SearchServlet extends HttpServlet {
 "" + 
 "                        <input type=\"submit\" value=\"Search\">" + 
 "                    </form>" + 
-"                </li>" + 
-"                <li>" + 
-"                    <a href=\"search\"> Input Data</a>" + 
-"                </li>" + 
+"                </li>" +  
 "            </ul>" + 
 "            <ul class=\"nav navbar-nav navbar-right\">" + 
 "                <li class=\"navbar-right\">" + 
-"                    <a href=\"https://devcenter.heroku.com\"><span class=\"glyphicon glyphicon-book\"></span> About Us</a>" + 
+"                    <a href=\"url\"><span class=\"glyphicon glyphicon-book\"></span> About Us</a>" + 
 "                </li>" + 
 "            </ul>" + 
 "        </div>" + 
@@ -103,42 +105,42 @@ public class SearchServlet extends HttpServlet {
                         "<h1>Search Results</h1>" + 
                         "<hr>");
 
-        result.println("<ul>");
+
         //Get the identifier of the item
         String firstName = request.getParameter("FirstName");
         String middleName = request.getParameter("MiddleName");
         String lastName = request.getParameter("LastName");
         String born = request.getParameter("YearBorn");
         String died = request.getParameter("YearDied");
-        result.println("<li>");
-        if (firstName != null && !firstName.equals("")) {
-            result.println(firstName + " ");
-        }
-        if (middleName != null && !middleName.equals("")) {
-            result.println(middleName + " ");
-        }
-        if (lastName != null && !lastName.equals("")) {
-            if ((born != null && !born.equals("")) || (died != null && !died.equals(""))) {
-                result.println(lastName + ", ");
-            } else{
-                result.println(lastName + " ");
+
+
+        Plot searchTerms = new Plot();
+        searchTerms.setFirstName(firstName);
+        searchTerms.setMiddleName(middleName);
+        searchTerms.setLastName(lastName);
+        searchTerms.setBirthYear(Integer.parseInt(born)); // TODO add checks to make sure they're integers
+        searchTerms.setDeathYear(Integer.parseInt(died));
+
+        ArrayList<Plot> plotList;
+        //plotList = SearchDB(searchTerms);
+        plotList = new ArrayList<>();
+        plotList.add(searchTerms);
+
+
+        if (plotList.isEmpty()) {
+            result.println("No search results.");
+        } else {
+            result.println("<ul>");
+            for (Plot p : plotList) {
+                result.println("<li>");
+                printSearchResult(result, p);
+                result.println("</li>");
             }
-        }
-        if (born != null && !born.equals("")) {
-            if (died != null && !died.equals("")) {
-                result.println("Born " + born + ", ");
-            } else {
-                result.println("Born " + born + " ");
-            }
-        }
-        if (died != null && !died.equals("")) {
-            result.println("Died " + died);
+            result.println("</ul>");
         }
 
-        result.println(
-                        "</li>" + 
-                        "</ul>" +
-                        "</div>");
+
+        result.println("</div>");
 
 
         result.println("</body>");
@@ -151,5 +153,44 @@ public class SearchServlet extends HttpServlet {
         result.println("</html>");
         result.flush();
         result.close();
+    }
+
+    private void printSearchResult(PrintWriter out, Plot plot) {
+        String firstName = plot.getFirstName();
+        String middleName = plot.getMiddleName();
+        String lastName = plot.getLastName();
+        String born = Integer.toString(plot.getBirthYear());
+        String died = Integer.toString(plot.getDeathYear());
+
+        if (isValid(firstName)) {
+            out.println(firstName + " ");
+        }
+        if (isValid(middleName)) {
+            out.println(middleName + " ");
+        }
+        if (isValid(lastName)) {
+            if (isValid(born) || isValid(died)) {
+                out.println(lastName + ", ");
+            } else{
+                out.println(lastName + " ");
+            }
+        }
+        if (isValid(born)) {
+            if (isValid(died)) {
+                out.println("Born " + born + ", ");
+            } else {
+                out.println("Born " + born + " ");
+            }
+        }
+        if (isValid(died)) {
+            out.println("Died " + died);
+        }
+    }
+
+    private boolean isValid(String s) {
+        if (s != null && !s.equals("")) {
+            return true;
+        }
+        return false;
     }
 }
