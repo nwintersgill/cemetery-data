@@ -45,7 +45,7 @@ public class Search {
 		
 		try {
 			//set the statements to search through specified columns
-			if (firstName != null) {
+			if (isValid(firstName)) {
 				record = "first";
 				firstSearch = dbConnection.prepareStatement("SELECT first, middle, last, spouse, location, notes, birth, death FROM Plot WHERE first = ?;");
 				firstSearch.setString(1, firstName);
@@ -81,7 +81,7 @@ public class Search {
 				}
 			}
 			
-			else if (lastName != null) {
+			else if (isValid(lastName)) {
 				record = "last";
 				lastSearch = dbConnection.prepareStatement("SELECT first, middle, last, spouse, location, notes, birth, death FROM Plot WHERE last = ?;");
 				lastSearch.setString(1, lastName);
@@ -117,7 +117,7 @@ public class Search {
 				}
 			}
 			
-			else if (middleName != null) {
+			else if (isValid(middleName)) {
 				record = "middle";
 				middleSearch = dbConnection.prepareStatement("SELECT first, middle, last, spouse, location, notes, birth, death FROM Plot WHERE middle = ?;");
 				middleSearch.setString(1, middleName);
@@ -153,7 +153,7 @@ public class Search {
 				}
 			}
 			
-			else if (location != null) {
+			else if (isValid(location)) {
 				record = "location";
 				locationSearch = dbConnection.prepareStatement("SELECT first, middle, last, spouse, location, notes, birth, death FROM Plot WHERE location = ?;");
 				locationSearch.setString(1, location);

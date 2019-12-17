@@ -64,7 +64,7 @@ public class SearchServlet extends HttpServlet {
 "                </li>" + 
 "                <li class=\"active\">" + 
 "                    <div class=\"popup\" onclick=\"toggleSearchPopup()\"> Search </div>" + 
-"                    <form class=\"popuptext\" id=\"searchPopup\" method=\"get\" action=\"search\">" + 
+"                    <form class=\"popuptext\" id=\"searchPopup\" method=\"post\" action=\"search\">" + 
 "                        " + 
 "                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\"><br>" + 
 "                        " + 
