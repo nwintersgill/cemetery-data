@@ -73,12 +73,12 @@ public class SearchServlet extends HttpServlet {
 "                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\"><br>" + 
 "" + 
 "                            <!-- Spouse" + 
-"                            <label>Spouse:</label> <input type=\"text\" name=\"LastName\"><br>" + 
+"                            <label>Spouse:</label> <input type=\"text\" name=\"Spouse\"><br>" + 
 "                            -->" + 
 "" + 
-"                            <label>Year Born:</label> <input type=\"text\" name=\"LastName\"><br>" + 
+"                            <label>Year Born:</label> <input type=\"text\" name=\"YearBorn\"><br>" + 
 "" + 
-"                            <label>Year Died:</label> <input type=\"text\" name=\"LastName\"><br>" + 
+"                            <label>Year Died:</label> <input type=\"text\" name=\"YearDied\"><br>" + 
 "" + 
 "                        <input type=\"submit\" value=\"Search\">" + 
 "                    </form>" + 
