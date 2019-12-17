@@ -38,8 +38,6 @@ public class Search {
 		int birthYear = plot.getBirthYear();
 		int deathYear = plot.getDeathYear();
 		
-		System.out.println("BIRTH YEAR = " + birthYear);
-		System.out.println("DEATH YEAR = " + deathYear);
 		//return our results
 		ArrayList<Plot> plotList = new ArrayList<>();
 		ArrayList<Plot> finalList = new ArrayList<>();
@@ -270,19 +268,10 @@ public class Search {
 		if (record.equalsIgnoreCase("first")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				System.out.println("LAST NAME: " + curPlot.getLastName());
-				System.out.println("MIDDLE NAME: " +curPlot.getMiddleName());
-				System.out.println("LOCATION: " + curPlot.getLocation());
-				System.out.println("BIRTH YEAR: " + curPlot.getBirthYear());
-				System.out.println("DEATH YEAR: " + curPlot.getDeathYear());
 				if (!isValid(lastName) || curPlot.getLastName().equalsIgnoreCase(lastName)) {
-					System.out.println("ACCESSING MIDDLE NAME");
 					if (!isValid(middleName) || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
-						System.out.println("ACCESSING LOCATION");
 						if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
-							System.out.println("ACCESSING BIRTH YEAR");
 							if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
-								System.out.println("ACCESSING DEATH YEAR");
 								if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 									finalList.add(curPlot);
 								}
@@ -295,19 +284,10 @@ public class Search {
 		else if (record.equalsIgnoreCase("last")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				System.out.println("LAST NAME: " + curPlot.getLastName());
-				System.out.println("MIDDLE NAME: " +curPlot.getMiddleName());
-				System.out.println("LOCATION: " + curPlot.getLocation());
-				System.out.println("BIRTH YEAR: " + curPlot.getBirthYear());
-				System.out.println("DEATH YEAR: " + curPlot.getDeathYear());
 				if (!isValid(middleName) || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
-					System.out.println("ACCESSING MIDDLE NAME");
 					if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
-						System.out.println("ACCESSING LOCATION");
 						if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
-							System.out.println("ACCESSING BIRTH YEAR");
 							if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
-								System.out.println("ACCESSING DEATH YEAR");
 								finalList.add(curPlot);
 							}
 						}
@@ -318,17 +298,9 @@ public class Search {
 		else if (record.equalsIgnoreCase("middle")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				System.out.println("LAST NAME: " + curPlot.getLastName());
-				System.out.println("MIDDLE NAME: " +curPlot.getMiddleName());
-				System.out.println("LOCATION: " + curPlot.getLocation());
-				System.out.println("BIRTH YEAR: " + curPlot.getBirthYear());
-				System.out.println("DEATH YEAR: " + curPlot.getDeathYear());
 				if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
-					System.out.println("ACCESSING LOCATION");
 					if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
-						System.out.println("ACCESSING BIRTH YEAR");
 						if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
-							System.out.println("ACCESSING DEATH YEAR");
 							finalList.add(curPlot);
 						}
 					}
@@ -338,15 +310,8 @@ public class Search {
 		else if (record.equalsIgnoreCase("location")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				System.out.println("LAST NAME: " + curPlot.getLastName());
-				System.out.println("MIDDLE NAME: " +curPlot.getMiddleName());
-				System.out.println("LOCATION: " + curPlot.getLocation());
-				System.out.println("BIRTH YEAR: " + curPlot.getBirthYear());
-				System.out.println("DEATH YEAR: " + curPlot.getDeathYear());
 				if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
-					System.out.println("ACCESSING BIRTH YEAR");
 					if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
-						System.out.println("ACCESSING DEATH YEAR");
 						finalList.add(curPlot);
 					}
 				}
@@ -355,13 +320,7 @@ public class Search {
 		else if (record.equalsIgnoreCase("birth")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				System.out.println("LAST NAME: " + curPlot.getLastName());
-				System.out.println("MIDDLE NAME: " +curPlot.getMiddleName());
-				System.out.println("LOCATION: " + curPlot.getLocation());
-				System.out.println("BIRTH YEAR: " + curPlot.getBirthYear());
-				System.out.println("DEATH YEAR: " + curPlot.getDeathYear());
 				if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
-					System.out.println("ACCESSING DEATH YEAR");
 					finalList.add(curPlot);
 				}
 			}
