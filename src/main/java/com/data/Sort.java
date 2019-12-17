@@ -18,7 +18,7 @@ public class Sort {
 		
 		//execute a query by selecting the columns 'First' and 'Last' from the table named Plot
 		Statement stmt = dbConnection.createStatement();
-		String string = "SELECT First, Last FROM Plot" + " ORDER BY first ASC";
+		String string = "SELECT first, middle, last,  FROM Plot" + " ORDER BY first ASC";
 		ResultSet results = stmt.executeQuery(string);
 
 		//return results by column name
