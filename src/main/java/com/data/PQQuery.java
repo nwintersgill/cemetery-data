@@ -104,7 +104,7 @@ public class PQQuery {
 				BufferedReader reader = new BufferedReader(new FileReader(fileName));
 				while (reader.readLine() != null) {
 					curString = reader.readLine();
-					s.executeUpdate("insert into " + tblName + "values " + curString);
+					s.executeUpdate("INSERT INTO " + tblName + "VALUES " + curString);
 					reader.close();
 					
 				}
@@ -137,14 +137,14 @@ public class PQQuery {
 			try  {
 				Statement s = db.createStatement();
 
-				ResultSet rs = s.executeQuery("select * from " + tblName);
+				ResultSet rs = s.executeQuery("SELECT * FROM " + tblName);
 
 				while (rs.next())  {
-					String name = rs.getString(1);  // first field is name
-					int    age  = rs.getInt(2);     // second field is age
-					double salary = rs.getDouble(3); // third field is salary
+					String firstName = rs.getString(1);  // first field is the first name
+					String middleName = rs.getString(2);  // second field is the middle name
+					String lastName = rs.getString(3);  // third field is last name
 
-					System.out.println(name + " " + age + " " + salary);
+					System.out.println("Full name: " + firstName + " " + middleName + " " + lastName);
 				}
 			}  catch (SQLException e)  {
 				System.out.println("query failed, exiting ...");
