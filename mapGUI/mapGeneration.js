@@ -10,10 +10,10 @@ const colorCode = [green = '#49FF00', red = '#FF0000', yellow = '#FFD500'];
       return map;
     }
 
-    function addCemetery(map, title, icon, location){
+    function addCemetery(map, title, location){
       var marker;
       try{
-        marker = L.marker(location, {icon: icon, title: title}).addTo(map);
+        marker = L.marker(location, {title: title}).addTo(map);
         marker.bindPopup('This is ' + title); // Add a marker to the map
         return marker;
       }
@@ -59,7 +59,7 @@ const colorCode = [green = '#49FF00', red = '#FF0000', yellow = '#FFD500'];
               [tLx, tLy], [tRx, tRy], [bRx, bRy], [bLx, bLy], [tLx, tLy]
               ];
 
-              fillColor = yellow;
+              fillColor = green;
               temp = turf.polygon([cell]);
               temp = turf.intersect(poly, temp);
               
@@ -68,12 +68,12 @@ const colorCode = [green = '#49FF00', red = '#FF0000', yellow = '#FFD500'];
               
 
                 gridFeat = {
-                    "type": "FeatureCollection",
                     "features": [
                         {
                         "type": "Feature",
                         "properties": {
-                            "popupContent": "TODO: add code and connect plot class " + counter.toString(),
+                            "PlotNum": counter.toString(),
+                            "popupContent": "Plot number: " + counter.toString() + "\n",
                             "style": {
                                 weight: 2,
                                 color: "#FFFFFF",

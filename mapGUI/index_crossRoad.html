@@ -19,6 +19,8 @@
    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> <!-- header from turf.js -->
 
    <script type="text/javascript" src="mapGeneration.js"></script>
+   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+   <script src="jquery.csv.js"></script>
 
 <style>
 #map {
@@ -42,6 +44,14 @@
 
 <script>
 
+    
+    function getData(){
+      x = $.post("/mapdata",dataType='http')
+      return x;
+    }
+
+    var csv_cr = getData();
+
     var green = colorCode[0], yellow = colorCode[2], red = colorCode[1];
 
     // define the center point of the map
@@ -63,7 +73,7 @@
 
     //setting up the icon
 
-    var marker_crossroad = addCemetery(greatMap, "Crossroads Cemetery", graveIcon, [40.436470, -79.770541]);
+    var marker_crossroad = addCemetery(greatMap, "Crossroads Cemetery", [40.436470, -79.770541]);
 
 
   var crossRoad_coordinate =  [[
@@ -99,13 +109,38 @@
               40.43747940085735
             ]];
 
+            
+    function readData(csv){     
+      var data_cem = $.csv.toArrays(csv);
+      return data_cem;
+    }
 
+    var data_cr = readData(csv_cr);
 
-    var cr_grid = addGrid(20, 20, crossRoad_coordinate);
+    var num_entry = Math.round(Math.sqrt(data_cr.length * 1.9));
+
+    var cr_grid = addGrid(numentry, numentry, crossRoad_coordinate);
     //console.log(cr_grid[0].features);
 
+    for (var i = 0; i < data_cr.length; i++){
+      var info_string = "First Name: " + data_cr[i][0] + "\n" + "Middle Name" + data_cr[i][1] + "\n" + "Last Name" + data_cr[i][2] + "\n" + "Birth Year" + data_cr[i][3] + "\n" + "Death Year" + data_cr[i][4] + "\n" + "Location" + data_cr[i][5] + "\n" + "Notes" + data_cr[i][6] + "\n";
+      for (var j = 0; j < cr_grid.length; j++){
+        if (cr_grid[j].features[0].properties.PlotNum == data_cr[i][9]){
+          if (data_cr[i][8] == "t"){
+            cr_grid[j].features[0].properties.style.fillColor = green;
+          }
+          else if (data_cr[i][7] == "t"){
+            cr_grid[j].features[0].properties.style.fillColor = yellow;
+          }
+          cr_grid[j].features[0].properties.popupContent += info_string;
+        }
+      }
+    }
 
-    for (var i = 0; i < cr_grid.length; i++){
+    //cr_grid[55].features[0].properties.style.fillColor = green;
+
+
+    for (i = 0; i < cr_grid.length; i++){
       L.geoJSON(cr_grid[i], {style: function (feature) {return feature.properties.style;}, onEachFeature: function (feature, layer) {layer.bindPopup(feature.properties.popupContent)}}).addTo(greatMap);
 
     }

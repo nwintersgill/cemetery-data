@@ -19,6 +19,8 @@
    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> <!-- header from turf.js -->
 
    <script type="text/javascript" src="mapGeneration.js"></script>
+   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+   <script src="jquery.csv.js"></script>
 
 <style>
 #map {
@@ -42,6 +44,14 @@
 
 <script>
 
+
+    function getData(){
+      x = $.post("/mapdata",dataType='http')
+      return x;
+    }
+
+    var csv_st = getData();
+
     var green = colorCode[0], yellow = colorCode[2], red = colorCode[1];
 
     // define the center point of the map
@@ -63,7 +73,7 @@
 
     //setting up the icon
 
-    var marker_stMary= addCemetery(greatMap, "st.Mary Cemetery", graveIcon, [40.784050, -76.538820]);
+    var marker_stMary= addCemetery(greatMap, "st.Mary Cemetery", [40.784050, -76.538820]);
 
   var stMary_coordinate = [
             [
@@ -160,7 +170,32 @@
             ]
           ];
 
+
+    function readData(csv){     
+      var data_cem = $.csv.toArrays(csv);
+      return data_cem;
+    }
+
+    var data_st = readData(csv_st);
+
+    var num_entry = Math.round(Math.sqrt(data_st.length * 1.9));
+
     var stMary_grid = addGrid(20, 20, stMary_coordinate);
+
+    for (var i = 0; i < data_st.length; i++){
+      var info_string = "First Name: " + data_st[i][0] + "\n" + "Middle Name" + data_st[i][1] + "\n" + "Last Name" + data_st[i][2] + "\n" + "Birth Year" + data_st[i][3] + "\n" + "Death Year" + data_st[i][4] + "\n" + "Location" + data_st[i][5] + "\n" + "Notes" + data_st[i][6] + "\n";
+      for (var j = 0; j < stMary_grid.length; j++){
+        if (stMary_grid[j].features[0].properties.PlotNum == data_st[i][9]){
+          if (data_st[i][8] == "t"){
+            stMary_grid[j].features[0].properties.style.fillColor = green;
+          }
+          else if (data_st[i][7] == "t"){
+            stMary_grid[j].features[0].properties.style.fillColor = yellow;
+          }
+          stMary_grid[j].features[0].properties.popupContent += info_string;
+        }
+      }
+    }
 
     for (i = 0; i < stMary_grid.length; i++){
       L.geoJSON(stMary_grid[i], {style: function (feature) {return feature.properties.style;}, onEachFeature: function (feature, layer) {layer.bindPopup(feature.properties.popupContent)}}).addTo(greatMap);
