@@ -6,7 +6,7 @@
 
 <head>
 
-<title>st.Mary Cemetery Map</title>
+<title>St. Mary's Cemetery Map</title>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -44,7 +44,7 @@
 <script>
 
     function getData(filePath){
-      x = $.get("/mapdata",dataType='http')
+      x = $.post("/mapdata",dataType='http')
       console.log(x)
    // x = jQuery.get('coordinates.txt',dataType="http");
       return x;

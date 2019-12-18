@@ -20,7 +20,7 @@ import com.data.Search;
 public class MapDataServlet extends HttpServlet {
 
     @Override
-    public void doGet (HttpServletRequest request,
+    public void doPost (HttpServletRequest request,
                        HttpServletResponse response)
         throws ServletException, IOException
     {
