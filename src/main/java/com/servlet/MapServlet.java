@@ -22,7 +22,7 @@ public class MapServlet extends HttpServlet {
         throws ServletException, IOException
     {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index_stMary.html");
-        dispatcher.forward(request,reponse);
+        dispatcher.forward(request, response);
     }
 
 
