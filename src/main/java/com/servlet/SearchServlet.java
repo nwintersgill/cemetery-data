@@ -1,42 +1,36 @@
-
 //based on http://www.eg.bucknell.edu/~mead/Java-tutorial/servlets/client-interaction/http-methods.html
-
 package com.servlet;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-
-import java.util.ArrayList;
 
 import com.data.Plot;
 import com.data.Search;
 import com.data.Sort;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /* TODO get thymleaf working so we can use fragments
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.TemplateMode;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-*/
-
-@WebServlet(urlPatterns="/search", name="searchHandler")
+ */
+@WebServlet(urlPatterns = "/search", name = "searchHandler")
 public class SearchServlet extends HttpServlet {
 
     @Override
-    public void doGet (HttpServletRequest request,
-                       HttpServletResponse response)
-        throws ServletException, IOException
-    {
-    // set content-type header before accessing the Writer
+    public void doGet(HttpServletRequest request,
+                      HttpServletResponse response)
+            throws ServletException, IOException {
+        // set content-type header before accessing the Writer
         response.setContentType("text/html");
         PrintWriter result = response.getWriter();
 
-    //Get the identifiers of the items
+        //Get the identifiers of the items
         String firstName = request.getParameter("FirstName");
         String middleName = request.getParameter("MiddleName");
         String lastName = request.getParameter("LastName");
@@ -47,110 +41,109 @@ public class SearchServlet extends HttpServlet {
             sortMethod = "last";
         }
 
-    // then write the response
+        // then write the response
         result.println(
-                    /*"<!DOCTYPE html>" + 
+                /*"<!DOCTYPE html>" +
                     "<html xmlns:th=\"http://www.thymeleaf.org\" th:replace=\"~{fragments/layresult :: layresult (~{::body},'search')}\">" +
-                    "<head>" + 
-                    "<title>Search Results</title>" + 
-                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css\" />" + 
-                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheets/main.css\" />" + 
-                    "</head>" + 
-                    */
+                    "<head>" +
+                    "<title>Search Results</title>" +
+                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css\" />" +
+                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheets/main.css\" />" +
+                    "</head>" +
+                 */
+                //layout.html (TODO thymeleaf isn't working with the servlet for now)
+                "<!DOCTYPE html>"
+                + "<html>"
+                + "<head>"
+                + "    <title>Cemetery Data</title>"
+                + "    <link rel=\"stylesheet\" type=\"text/css\" href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css\" />"
+                + "    <link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheets/main.css\" />"
+                + "</head>"
+                + ""
+                + "<body>"
+                + "    <nav class=\"navbar navbar-default navbar-static-top navbar-inverse\">"
+                + "        <div class=\"container\">"
+                + "            <ul class=\"nav navbar-nav\">"
+                + "                <li>"
+                + "                    <a href=\"/\"><span class=\"glyphicon glyphicon-home\"></span> Home</a>"
+                + "                </li>"
+                + "                <li class=\"active\">"
+                + "                    <div class=\"popup\" onclick=\"toggleSearchPopup()\"> Search </div>"
+                + "                    <form class=\"popuptext\" id=\"searchPopup\" method=\"get\" action=\"search\">"
+                + "                        "
+                + "                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\" value=\"" + firstName + "\"><br>"
+                + "                        "
+                + "                            <label>Middle Name:</label> <input type=\"text\" name=\"MiddleName\" value=\"" + middleName + "\"><br>"
+                + "                        "
+                + "                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\" value=\"" + lastName + "\"><br>"
+                + ""
+                + "                            <!-- Spouse"
+                + "                            <label>Spouse:</label> <input type=\"text\" name=\"Spouse\"><br>"
+                + "                            -->"
+                + ""
+                + "                            <label>Year Born:</label> <input type=\"text\" name=\"YearBorn\" value=\"" + born + "\"><br>"
+                + ""
+                + "                            <label>Year Died:</label> <input type=\"text\" name=\"YearDied\" value=\"" + died + "\"><br>"
+                + ""
+                + "                        <input type=\"submit\" value=\"Search\">"
+                + "                    </form>"
+                + "                </li>"
+                + "                <li>"
+                + "                    <a href=\"/search?FirstName=&MiddleName=&LastName=&YearBorn=&YearDied=\">List All Entires</a>"
+                + "                </li>"
+                + "            </ul>"
+                + "            <ul class=\"nav navbar-nav navbar-right\">"
+                + "                <li class=\"navbar-right\">"
+                + "                    <a href=\"url\"><span class=\"glyphicon glyphicon-book\"></span> About Us</a>"
+                + "                </li>"
+                + "            </ul>"
+                + "        </div>"
+                + "    </nav>"
+                + "    <div th:replace=\"${template}\"/>"
+                + ""
+                + "    <script th:src=\"@{/webjars/jquery/jquery.min.js}\"></script>"
+                + "    <script th:src=\"@{/webjars/jquery-ui/jquery-ui.min.js}\"></script>"
+                + "    <script th:src=\"@{/webjars/bootstrap/js/bootstrap.min.js}\"></script>");
 
-                    //layout.html (TODO thymeleaf isn't working with the servlet for now)
-                    "<!DOCTYPE html>" + 
-"<html>" + 
-"<head>" + 
-"    <title>Cemetery Data</title>" + 
-"    <link rel=\"stylesheet\" type=\"text/css\" href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css\" />" + 
-"    <link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheets/main.css\" />" + 
-"</head>" + 
-"" + 
-"<body>" + 
-"    <nav class=\"navbar navbar-default navbar-static-top navbar-inverse\">" + 
-"        <div class=\"container\">" + 
-"            <ul class=\"nav navbar-nav\">" + 
-"                <li>" + 
-"                    <a href=\"/\"><span class=\"glyphicon glyphicon-home\"></span> Home</a>" + 
-"                </li>" + 
-"                <li class=\"active\">" + 
-"                    <div class=\"popup\" onclick=\"toggleSearchPopup()\"> Search </div>" + 
-"                    <form class=\"popuptext\" id=\"searchPopup\" method=\"get\" action=\"search\">" + 
-"                        " + 
-"                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\" value=\"" + firstName + "\"><br>" + 
-"                        " + 
-"                            <label>Middle Name:</label> <input type=\"text\" name=\"MiddleName\" value=\"" + middleName + "\"><br>" + 
-"                        " + 
-"                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\" value=\"" + lastName + "\"><br>" + 
-"" + 
-"                            <!-- Spouse" + 
-"                            <label>Spouse:</label> <input type=\"text\" name=\"Spouse\"><br>" + 
-"                            -->" + 
-"" + 
-"                            <label>Year Born:</label> <input type=\"text\" name=\"YearBorn\" value=\"" + born + "\"><br>" + 
-"" + 
-"                            <label>Year Died:</label> <input type=\"text\" name=\"YearDied\" value=\"" + died + "\"><br>" + 
-"" + 
-"                        <input type=\"submit\" value=\"Search\">" + 
-"                    </form>" + 
-"                </li>" + 
-"                <li>" +
-"                    <a href=\"/search?FirstName=&MiddleName=&LastName=&YearBorn=&YearDied=\">List All Entires</a>" +
-"                </li>" +
-"            </ul>" + 
-"            <ul class=\"nav navbar-nav navbar-right\">" + 
-"                <li class=\"navbar-right\">" + 
-"                    <a href=\"url\"><span class=\"glyphicon glyphicon-book\"></span> About Us</a>" + 
-"                </li>" + 
-"            </ul>" + 
-"        </div>" + 
-"    </nav>" + 
-"    <div th:replace=\"${template}\"/>" + 
-"" + 
-"    <script th:src=\"@{/webjars/jquery/jquery.min.js}\"></script>" + 
-"    <script th:src=\"@{/webjars/jquery-ui/jquery-ui.min.js}\"></script>" + 
-"    <script th:src=\"@{/webjars/bootstrap/js/bootstrap.min.js}\"></script>");
-
-
-
- 
         result.println(
-                        "<div class=\"container\">" +
-                        "<div class=\"dropdown\">" + 
-"                           <label> Sort by </label>" + 
-"                           <select name=\"SortMethod\" form=\"searchPopup\">");
+                "<div class=\"container\">"
+                + "<div class=\"dropdown\">"
+                + "                           <label> Sort by </label>"
+                + "                           <select name=\"SortMethod\" form=\"searchPopup\">");
         if (sortMethod.equals("first")) {
             result.println(
-"                               <option value=\"first\" selected>First Name</option>" + 
-"                               <option value=\"last\">Last Name</option>" + 
-"                               <option value=\"birth\">Birth Year</option>" + 
-"                               <option value=\"death\">Death Year</option>");
-        } else if (sortMethod.equals("birth")) {
+                    "                               <option value=\"first\" selected>First Name</option>"
+                    + "                               <option value=\"last\">Last Name</option>"
+                    + "                               <option value=\"birth\">Birth Year</option>"
+                    + "                               <option value=\"death\">Death Year</option>");
+        }
+        else if (sortMethod.equals("birth")) {
             result.println(
-"                               <option value=\"first\">First Name</option>" + 
-"                               <option value=\"last\">Last Name</option>" + 
-"                               <option value=\"birth\" selected>Birth Year</option>" + 
-"                               <option value=\"death\">Death Year</option>");
-        } else if (sortMethod.equals("death")) {
+                    "                               <option value=\"first\">First Name</option>"
+                    + "                               <option value=\"last\">Last Name</option>"
+                    + "                               <option value=\"birth\" selected>Birth Year</option>"
+                    + "                               <option value=\"death\">Death Year</option>");
+        }
+        else if (sortMethod.equals("death")) {
             result.println(
-"                               <option value=\"first\">First Name</option>" + 
-"                               <option value=\"last\">Last Name</option>" + 
-"                               <option value=\"birth\">Birth Year</option>" + 
-"                               <option value=\"death\" selected>Death Year</option>");
-        } else {
+                    "                               <option value=\"first\">First Name</option>"
+                    + "                               <option value=\"last\">Last Name</option>"
+                    + "                               <option value=\"birth\">Birth Year</option>"
+                    + "                               <option value=\"death\" selected>Death Year</option>");
+        }
+        else {
             result.println(
-"                               <option value=\"first\">First Name</option>" + 
-"                               <option value=\"last\" selected>Last Name</option>" + 
-"                               <option value=\"birth\">Birth Year</option>" + 
-"                               <option value=\"death\">Death Year</option>");
+                    "                               <option value=\"first\">First Name</option>"
+                    + "                               <option value=\"last\" selected>Last Name</option>"
+                    + "                               <option value=\"birth\">Birth Year</option>"
+                    + "                               <option value=\"death\">Death Year</option>");
         }
 
-                            result.println("</select>" + 
-"                           <input type=\"submit\" value=\"Sort\" form=\"searchPopup\">" + 
-"                       </div>" + 
-                        "<h1>Search Results</h1>" + 
-                        "<hr>");
+        result.println("</select>"
+                       + "                           <input type=\"submit\" value=\"Sort\" form=\"searchPopup\">"
+                       + "                       </div>"
+                       + "<h1>Search Results</h1>"
+                       + "<hr>");
 
         Plot searchTerms = new Plot();
         searchTerms.setFirstName(firstName);
@@ -163,7 +156,7 @@ public class SearchServlet extends HttpServlet {
         }
         try {
             searchTerms.setDeathYear(Integer.parseInt(died));
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             searchTerms.setDeathYear(-1);
         }
 
@@ -172,17 +165,21 @@ public class SearchServlet extends HttpServlet {
 
         if (sortMethod.equals("first")) {
             Sort.SortFirst(plotList);
-        } else if (sortMethod.equals("birth")) {
+        }
+        else if (sortMethod.equals("birth")) {
             Sort.SortBirthYear(plotList);
-        } else if (sortMethod.equals("death")) {
+        }
+        else if (sortMethod.equals("death")) {
             Sort.SortDeathYear(plotList);
-        } else {
+        }
+        else {
             Sort.SortLast(plotList);
         }
 
         if (plotList.isEmpty()) {
             result.println("No search results.");
-        } else {
+        }
+        else {
             result.println("<ul>");
             for (Plot p : plotList) {
                 result.println("<li>");
@@ -192,17 +189,15 @@ public class SearchServlet extends HttpServlet {
             result.println("</ul>");
         }
 
-
         result.println("</div>");
 
-
         result.println("</body>");
-        result.println("<script>" + 
-"    function toggleSearchPopup() {" + 
-"        let popup = document.getElementById(\"searchPopup\");" + 
-"        popup.classList.toggle(\"show\");" + 
-"    }" + 
-"</script>");
+        result.println("<script>"
+                       + "    function toggleSearchPopup() {"
+                       + "        let popup = document.getElementById(\"searchPopup\");"
+                       + "        popup.classList.toggle(\"show\");"
+                       + "    }"
+                       + "</script>");
         result.println("</html>");
         result.flush();
         result.close();
@@ -224,38 +219,46 @@ public class SearchServlet extends HttpServlet {
             out.println(middleName + " ");
         }
         if (Search.isValid(lastName)) {
-            if (Search.isValid(born) || Search.isValid(died) || Search.isValid(location)) {
+            if (Search.isValid(born) || Search.isValid(died) || Search.isValid(
+                    location)) {
                 out.println(lastName + ", ");
-            } else {
+            }
+            else {
                 out.println(lastName + " ");
             }
         }
         if (Search.isValid(born)) {
             if (Search.isValid(died) || Search.isValid(location)) {
-                if (born == -1) {
+                if (born.equals("-1")) {
                     out.println("Born (unknown), ");
-                } else {
+                }
+                else {
                     out.println("Born " + born + ", ");
                 }
-            } else {
-                if (born == -1) {
+            }
+            else {
+                if (born.equals("-1")) {
                     out.println("Born (unknown)");
-                } else {
+                }
+                else {
                     out.println("Born " + born + " ");
                 }
             }
         }
         if (Search.isValid(died)) {
             if (Search.isValid(location)) {
-                if (died == -1) {
+                if (died.equals("-1")) {
                     out.println("Died (unknown), ");
-                } else {
-                    ut.println("Died " + died + ", ");
                 }
-            } else {
-                if (died == -1) {
+                else {
+                    out.println("Died " + died + ", ");
+                }
+            }
+            else {
+                if (died.equals("-1")) {
                     out.println("Died (unknown)");
-                } else {
+                }
+                else {
                     out.println("Died " + died);
                 }
             }
@@ -270,6 +273,5 @@ public class SearchServlet extends HttpServlet {
             out.println(": " + notes);
         }
     }
-
 
 }
