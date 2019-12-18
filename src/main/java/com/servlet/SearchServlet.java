@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import com.data.Plot;
 import com.data.Search;
+import com.data.Sort;
 
 /* TODO get thymleaf working so we can use fragments
 import org.thymeleaf.TemplateEngine;
@@ -34,6 +35,17 @@ public class SearchServlet extends HttpServlet {
     // set content-type header before accessing the Writer
         response.setContentType("text/html");
         PrintWriter result = response.getWriter();
+
+    //Get the identifiers of the items
+        String firstName = request.getParameter("FirstName");
+        String middleName = request.getParameter("MiddleName");
+        String lastName = request.getParameter("LastName");
+        String born = request.getParameter("YearBorn");
+        String died = request.getParameter("YearDied");
+        String sortMethod = request.getParameter("SortMethod");
+        if (sortMethod == null) {
+            sortMethod = "last";
+        }
 
     // then write the response
         result.println(
@@ -66,19 +78,19 @@ public class SearchServlet extends HttpServlet {
 "                    <div class=\"popup\" onclick=\"toggleSearchPopup()\"> Search </div>" + 
 "                    <form class=\"popuptext\" id=\"searchPopup\" method=\"get\" action=\"search\">" + 
 "                        " + 
-"                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\"><br>" + 
+"                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\" value=\"" + firstName + "\"><br>" + 
 "                        " + 
-"                            <label>Middle Name:</label> <input type=\"text\" name=\"MiddleName\"><br>" + 
+"                            <label>Middle Name:</label> <input type=\"text\" name=\"MiddleName\" value=\"" + middleName + "\"><br>" + 
 "                        " + 
-"                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\"><br>" + 
+"                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\" value=\"" + lastName + "\"><br>" + 
 "" + 
 "                            <!-- Spouse" + 
-"                            <label>Spouse:</label> <input type=\"text\" name=\"LastName\"><br>" + 
+"                            <label>Spouse:</label> <input type=\"text\" name=\"Spouse\"><br>" + 
 "                            -->" + 
 "" + 
-"                            <label>Year Born:</label> <input type=\"text\" name=\"LastName\"><br>" + 
+"                            <label>Year Born:</label> <input type=\"text\" name=\"YearBorn\" value=\"" + born + "\"><br>" + 
 "" + 
-"                            <label>Year Died:</label> <input type=\"text\" name=\"LastName\"><br>" + 
+"                            <label>Year Died:</label> <input type=\"text\" name=\"YearDied\" value=\"" + died + "\"><br>" + 
 "" + 
 "                        <input type=\"submit\" value=\"Search\">" + 
 "                    </form>" + 
@@ -102,30 +114,50 @@ public class SearchServlet extends HttpServlet {
  
         result.println(
                         "<div class=\"container\">" +
+                        "<div class=\"dropdown\">" + 
+"                           <label> Sort by </label>" + 
+"                           <select name=\"SortMethod\" form=\"searchPopup\">" + 
+"                               <option value=\"first\">First Name</option>" + 
+"                               <option value=\"last\" selected>Last Name</option>" + 
+"                               <option value=\"birth\">Birth Year</option>" + 
+"                               <option value=\"death\">Death Year</option>" + 
+"                           </select>" + 
+"                           <input type=\"submit\" value=\"Sort\" form=\"searchPopup\">" + 
+"                       </div>" + 
                         "<h1>Search Results</h1>" + 
                         "<hr>");
-
-
-        //Get the identifier of the item
-        String firstName = request.getParameter("FirstName");
-        String middleName = request.getParameter("MiddleName");
-        String lastName = request.getParameter("LastName");
-        String born = request.getParameter("YearBorn");
-        String died = request.getParameter("YearDied");
-
 
         Plot searchTerms = new Plot();
         searchTerms.setFirstName(firstName);
         searchTerms.setMiddleName(middleName);
         searchTerms.setLastName(lastName);
-        searchTerms.setBirthYear(Integer.parseInt(born)); // TODO add checks to make sure they're integers
-        searchTerms.setDeathYear(Integer.parseInt(died));
+        try {
+            searchTerms.setBirthYear(Integer.parseInt(born));
+        } catch (NumberFormatException e) {
+            searchTerms.setBirthYear(-1);
+        }
+        try {
+            searchTerms.setDeathYear(Integer.parseInt(died));
+        } catch(NumberFormatException e) {
+            searchTerms.setDeathYear(-1);
+        }
 
         ArrayList<Plot> plotList;
-        //plotList = SearchDB(searchTerms);
-        plotList = new ArrayList<>();
-        plotList.add(searchTerms);
+        plotList = Search.SearchDB(searchTerms);
 
+        if (sortMethod.equals("first")) {
+            System.out.println("FIRST");
+            Sort.SortFirst(plotList);
+        } else if (sortMethod.equals("birth")) {
+            System.out.println("BIRTH");
+            Sort.SortFirst(plotList);
+        } else if (sortMethod.equals("death")) {
+            System.out.println("DEATH");
+            Sort.SortFirst(plotList);
+        } else {
+            System.out.println("LAST");
+            Sort.SortFirst(plotList);
+        }
 
         if (plotList.isEmpty()) {
             result.println("No search results.");
@@ -161,36 +193,43 @@ public class SearchServlet extends HttpServlet {
         String lastName = plot.getLastName();
         String born = Integer.toString(plot.getBirthYear());
         String died = Integer.toString(plot.getDeathYear());
+        String location = plot.getLocation();
+        String notes = plot.getNotes();
 
-        if (isValid(firstName)) {
+        if (Search.isValid(firstName)) {
             out.println(firstName + " ");
         }
-        if (isValid(middleName)) {
+        if (Search.isValid(middleName)) {
             out.println(middleName + " ");
         }
-        if (isValid(lastName)) {
-            if (isValid(born) || isValid(died)) {
+        if (Search.isValid(lastName)) {
+            if (Search.isValid(born) || Search.isValid(died) || Search.isValid(location)) {
                 out.println(lastName + ", ");
-            } else{
+            } else {
                 out.println(lastName + " ");
             }
         }
-        if (isValid(born)) {
-            if (isValid(died)) {
+        if (Search.isValid(born)) {
+            if (Search.isValid(died) || Search.isValid(location)) {
                 out.println("Born " + born + ", ");
             } else {
                 out.println("Born " + born + " ");
             }
         }
-        if (isValid(died)) {
-            out.println("Died " + died);
+        if (Search.isValid(died)) {
+            if (Search.isValid(location)) {
+                out.println("Died " + died + ", ");
+            } else {
+                out.println("Died " + died);
+            }
+        }
+        if (Search.isValid(location)) {
+            out.println("Plot " + location);
+        }
+        if (Search.isValid(notes)) {
+            out.println(": " + notes);
         }
     }
 
-    private boolean isValid(String s) {
-        if (s != null && !s.equals("")) {
-            return true;
-        }
-        return false;
-    }
+
 }

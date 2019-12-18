@@ -8,12 +8,11 @@
 
 package com.data;
 
-import java.sql.*;
 import java.util.ArrayList;
 
 public class Sort {
 	
-	public void SortFirst(ArrayList<Plot> plots) throws SQLException {
+	public static void SortFirst(ArrayList<Plot> plots) {
 		int size = plots.size();
 		for (int i = 0; i < size -1; i++) {
 			for (int j = 0; j < size-i-1; j++) {
@@ -31,20 +30,57 @@ public class Sort {
 		}
 	}
 	
-	public void SortYear() throws SQLException {
-		//connect to the database
-		Connection dbConnection = PQQuery.connectDB();
-		
-		//execute a query by selecting the column 'Age' from the table named Plot
-		Statement stmt = dbConnection.createStatement();
-		String string = "SELECT Death Year FROM Plot" + " ORDER BY first ASC";
-		ResultSet results = stmt.executeQuery(string);
-		
-		//return results by column name
-		while (results.next()) {
-			int year = results.getInt("Age");
-			
-			System.out.println("Death Year: " + year);
+	public static void SortLast(ArrayList<Plot> plots) {
+		int size = plots.size();
+		for (int i = 0; i < size -1; i++) {
+			for (int j = 0; j < size-i-1; j++) {
+				Plot iPlot = plots.get(j);
+				String iName = iPlot.getLastName();
+				Plot jPlot = plots.get(j + 1);
+				String jName = jPlot.getLastName();
+				
+				if (iName.compareTo(jName) > 0) {
+				Plot temp = iPlot;
+				plots.set(j, jPlot);
+				plots.set(j+1, temp);
+				}
+			}
+		}
+	}
+	
+	public static void SortBirthYear(ArrayList<Plot> plots) {
+		int size = plots.size();
+		for (int i = 0; i < size -1; i++) {
+			for (int j = 0; j < size-i-1; j++) {
+				Plot iPlot = plots.get(j);
+				int iYear = iPlot.getBirthYear();
+				Plot jPlot = plots.get(j + 1);
+				int jYear = jPlot.getBirthYear();
+				
+				if (iYear > jYear) {
+				Plot temp = iPlot;
+				plots.set(j, jPlot);
+				plots.set(j+1, temp);
+				}
+			}
+		}
+	}
+	
+	public static void SortDeathYear(ArrayList<Plot> plots) {
+		int size = plots.size();
+		for (int i = 0; i < size -1; i++) {
+			for (int j = 0; j < size-i-1; j++) {
+				Plot iPlot = plots.get(j);
+				int iYear = iPlot.getDeathYear();
+				Plot jPlot = plots.get(j + 1);
+				int jYear = jPlot.getDeathYear();
+				
+				if (iYear > jYear) {
+				Plot temp = iPlot;
+				plots.set(j, jPlot);
+				plots.set(j+1, temp);
+				}
+			}
 		}
 	}
 

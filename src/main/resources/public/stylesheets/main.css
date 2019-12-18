@@ -84,3 +84,7 @@ hr {
   .navbar .popuptext.show {
     visibility: visible;
 }
+
+.dropdown {
+  text-align: right;
+}

@@ -16,7 +16,7 @@ import java.sql.*;
 public class Search {
 	
 	//iterate through the first, middle, and last names in the database
-	public ArrayList<Plot> SearchDB(Plot plot) {
+	public static ArrayList<Plot> SearchDB(Plot plot) {
 		//initialize the connection and statements 
 		Connection dbConnection = PQQuery.connectDB();
 		PreparedStatement firstSearch;
@@ -26,6 +26,7 @@ public class Search {
 		PreparedStatement birthSearch;
 		PreparedStatement deathSearch;
 		
+		PreparedStatement everythingSearch;
 	
 		//initialize result sets
 		ResultSet db;
@@ -45,7 +46,7 @@ public class Search {
 		
 		try {
 			//set the statements to search through specified columns
-			if (firstName != null) {
+			if (isValid(firstName)) {
 				record = "first";
 				firstSearch = dbConnection.prepareStatement("SELECT first, middle, last, spouse, location, notes, birth, death FROM Plot WHERE first = ?;");
 				firstSearch.setString(1, firstName);
@@ -81,7 +82,7 @@ public class Search {
 				}
 			}
 			
-			else if (lastName != null) {
+			else if (isValid(lastName)) {
 				record = "last";
 				lastSearch = dbConnection.prepareStatement("SELECT first, middle, last, spouse, location, notes, birth, death FROM Plot WHERE last = ?;");
 				lastSearch.setString(1, lastName);
@@ -117,7 +118,7 @@ public class Search {
 				}
 			}
 			
-			else if (middleName != null) {
+			else if (isValid(middleName)) {
 				record = "middle";
 				middleSearch = dbConnection.prepareStatement("SELECT first, middle, last, spouse, location, notes, birth, death FROM Plot WHERE middle = ?;");
 				middleSearch.setString(1, middleName);
@@ -153,7 +154,7 @@ public class Search {
 				}
 			}
 			
-			else if (location != null) {
+			else if (isValid(location)) {
 				record = "location";
 				locationSearch = dbConnection.prepareStatement("SELECT first, middle, last, spouse, location, notes, birth, death FROM Plot WHERE location = ?;");
 				locationSearch.setString(1, location);
@@ -257,20 +258,52 @@ public class Search {
 					
 					plotList.add(curPlot);
 				}
+			} else {
+				everythingSearch = dbConnection.prepareStatement("SELECT * FROM plot;");
+				db = everythingSearch.executeQuery();
+				while (db.next()) {
+					Plot curPlot = new Plot();
+					
+					String first = db.getString("first");
+					curPlot.setFirstName(first);
+					
+					String middle = db.getString("middle");
+					curPlot.setMiddleName(middle);
+					
+					String last = db.getString("last");
+					curPlot.setLastName(last);
+					
+					String spouse = db.getString("spouse");
+					curPlot.setSpouse(spouse);
+					
+					String plLocation = db.getString("location");
+					curPlot.setLocation(plLocation);
+					
+					String notes = db.getString("notes");
+					curPlot.setNotes(notes);
+					
+					int bYear = db.getInt("birth");
+					curPlot.setBirthYear(bYear);
+					
+					int dYear = db.getInt("death");
+					curPlot.setDeathYear(dYear);
+					
+					plotList.add(curPlot);
+				}
+				return plotList;			
 			}
 		} catch (SQLException e) {
 			System.out.println("SQLException, exiting ...");
 			System.exit(1);
 		}
-		
 		if (record.equalsIgnoreCase("first")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getLastName().equalsIgnoreCase(lastName) || lastName == null) {
-					if (curPlot.getMiddleName().equalsIgnoreCase(middleName) || middleName == null) {
-						if (curPlot.getLocation().equalsIgnoreCase(location) || location == null) {
-							if (curPlot.getBirthYear() == birthYear || birthYear == -1) {
-								if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (!isValid(lastName) || curPlot.getLastName().equalsIgnoreCase(lastName)) {
+					if (!isValid(middleName) || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
+						if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
+							if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
+								if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 									finalList.add(curPlot);
 								}
 							}
@@ -282,10 +315,10 @@ public class Search {
 		else if (record.equalsIgnoreCase("last")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getMiddleName().equalsIgnoreCase(middleName) || middleName == null) {
-					if (curPlot.getLocation().equalsIgnoreCase(location) || location == null) {
-						if (curPlot.getBirthYear() == birthYear || birthYear == -1) {
-							if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (!isValid(middleName) || curPlot.getMiddleName().equalsIgnoreCase(middleName)) {
+					if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
+						if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
+							if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 								finalList.add(curPlot);
 							}
 						}
@@ -296,9 +329,9 @@ public class Search {
 		else if (record.equalsIgnoreCase("middle")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getLocation().equalsIgnoreCase(location) || location == null) {
-					if (curPlot.getBirthYear() == birthYear || birthYear == -1) {
-						if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (!isValid(location) || curPlot.getLocation().equalsIgnoreCase(location)) {
+					if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
+						if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 							finalList.add(curPlot);
 						}
 					}
@@ -308,8 +341,8 @@ public class Search {
 		else if (record.equalsIgnoreCase("location")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getBirthYear() == birthYear || birthYear == -1) {
-					if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (birthYear == -1 || curPlot.getBirthYear() == birthYear) {
+					if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 						finalList.add(curPlot);
 					}
 				}
@@ -318,7 +351,7 @@ public class Search {
 		else if (record.equalsIgnoreCase("birth")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
-				if (curPlot.getDeathYear() == deathYear || deathYear == -1) {
+				if (deathYear == -1 || curPlot.getDeathYear() == deathYear) {
 					finalList.add(curPlot);
 				}
 			}
@@ -329,4 +362,11 @@ public class Search {
 		
 		return finalList;
 	}
+
+	public static boolean isValid(String s) {
+        if (s != null && !s.equals("")) {
+            return true;
+        }
+        return false;
+    }
 }
