@@ -43,6 +43,9 @@ public class SearchServlet extends HttpServlet {
         String born = request.getParameter("YearBorn");
         String died = request.getParameter("YearDied");
         String sortMethod = request.getParameter("SortMethod");
+        if (sortMethod == null) {
+            sortMethod = "last";
+        }
 
     // then write the response
         result.println(
