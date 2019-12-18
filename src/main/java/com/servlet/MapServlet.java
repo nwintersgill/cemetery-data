@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.RequestDispatcher;
 
-@WebServlet(urlPatterns="/map", name="searchHandler")
+@WebServlet(urlPatterns="/map", name="mapHandler")
 public class MapServlet extends HttpServlet {
 
     @Override
