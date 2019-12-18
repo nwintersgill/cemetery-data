@@ -20,7 +20,7 @@ public class MapServlet extends HttpServlet {
         throws ServletException, IOException
     {
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/resources/index_stMary.html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.html");
 
         dispatcher.forward(request, response);
 
