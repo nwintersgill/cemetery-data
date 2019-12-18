@@ -150,10 +150,10 @@ public class SearchServlet extends HttpServlet {
             Sort.SortFirst(plotList);
         } else if (sortMethod.equals("birth")) {
             System.out.println("BIRTH");
-            Sort.SortBirth(plotList);
+            Sort.SortBirthYear(plotList);
         } else if (sortMethod.equals("death")) {
             System.out.println("DEATH");
-            Sort.SortDeath(plotList);
+            Sort.SortDeathYear(plotList);
         } else {
             System.out.println("LAST");
             Sort.SortLast(plotList);
