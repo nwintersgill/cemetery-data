@@ -140,8 +140,8 @@ public class SearchServlet extends HttpServlet {
 "                               <option value=\"death\" selected>Death Year</option>");
         } else {
             result.println(
-"                               <option value=\"first\" selected>First Name</option>" + 
-"                               <option value=\"last\">Last Name</option>" + 
+"                               <option value=\"first\">First Name</option>" + 
+"                               <option value=\"last\" selected>Last Name</option>" + 
 "                               <option value=\"birth\">Birth Year</option>" + 
 "                               <option value=\"death\">Death Year</option>");
         }
