@@ -30,7 +30,7 @@ public class MapDataServlet extends HttpServlet {
         ArrayList<Plot> plotList = Search.SearchDB(new Plot());
 
         for (Plot p : plotList) {
-            result.println(p.getFirstName() + "," + p.getMiddleName() + "," + p.getLastName() + "," + p.getBirthYear() + "," + p.getDeathYear() + "," + p.getLocation() + "," + p.getNotes() + "," + p.getBought() + "," + p.getInUse() + "," + p.getPlotNum());
+            result.println(p.getFirstName() + "," + p.getMiddleName() + "," + p.getLastName() + "," + p.getBirthYear() + "," + p.getDeathYear() + "," + p.getLocation() + "," + p.getNotes());
         }
 
         result.flush();
