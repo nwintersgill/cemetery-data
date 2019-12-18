@@ -26,6 +26,7 @@ public class Search {
 		PreparedStatement birthSearch;
 		PreparedStatement deathSearch;
 		
+		PreparedStatement everythingSearch;
 	
 		//initialize result sets
 		ResultSet db;
@@ -258,7 +259,38 @@ public class Search {
 					plotList.add(curPlot);
 				}
 			} else {
-				return plotList;
+				everythingSearch = dbConnection.prepareStatement("SELECT * FROM plot;")
+				db = everythingSearch.executeQuery();
+				while (db.next()) {
+					Plot curPlot = new Plot();
+					
+					String first = db.getString("first");
+					curPlot.setFirstName(first);
+					
+					String middle = db.getString("middle");
+					curPlot.setMiddleName(middle);
+					
+					String last = db.getString("last");
+					curPlot.setLastName(last);
+					
+					String spouse = db.getString("spouse");
+					curPlot.setSpouse(spouse);
+					
+					String plLocation = db.getString("location");
+					curPlot.setLocation(plLocation);
+					
+					String notes = db.getString("notes");
+					curPlot.setNotes(notes);
+					
+					int bYear = db.getInt("birth");
+					curPlot.setBirthYear(bYear);
+					
+					int dYear = db.getInt("death");
+					curPlot.setDeathYear(dYear);
+					
+					plotList.add(curPlot);
+				}
+				return plotList;			
 			}
 		} catch (SQLException e) {
 			System.out.println("SQLException, exiting ...");

@@ -168,6 +168,8 @@ public class SearchServlet extends HttpServlet {
         String lastName = plot.getLastName();
         String born = Integer.toString(plot.getBirthYear());
         String died = Integer.toString(plot.getDeathYear());
+        String location = plot.getLocation();
+        String notes = plot.getNotes();
 
         if (Search.isValid(firstName)) {
             out.println(firstName + " ");
@@ -176,21 +178,31 @@ public class SearchServlet extends HttpServlet {
             out.println(middleName + " ");
         }
         if (Search.isValid(lastName)) {
-            if (Search.isValid(born) || Search.isValid(died)) {
+            if (Search.isValid(born) || Search.isValid(died) || Search.isValid(location)) {
                 out.println(lastName + ", ");
-            } else{
+            } else {
                 out.println(lastName + " ");
             }
         }
         if (Search.isValid(born)) {
-            if (Search.isValid(died)) {
+            if (Search.isValid(died) || Search.isValid(location)) {
                 out.println("Born " + born + ", ");
             } else {
                 out.println("Born " + born + " ");
             }
         }
         if (Search.isValid(died)) {
-            out.println("Died " + died);
+            if (Search.isValid(location)) {
+                out.println("Died " + died + ", ")
+            } else {
+                out.println("Died " + died);
+            }
+        }
+        if (Search.isValid(location)) {
+            out.println("Plot " + location);
+        }
+        if (Search.isValid(notes)) {
+            out.println(": " + notes);
         }
     }
 
