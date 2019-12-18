@@ -58,7 +58,7 @@ public class SearchServlet extends HttpServlet {
                     "</head>" + 
                     */
 
-                    //layout.html (thymeleaf isn't working with the servlet for now)
+                    //layout.html (TODO thymeleaf isn't working with the servlet for now)
                     "<!DOCTYPE html>" + 
 "<html>" + 
 "<head>" + 
@@ -94,7 +94,10 @@ public class SearchServlet extends HttpServlet {
 "" + 
 "                        <input type=\"submit\" value=\"Search\">" + 
 "                    </form>" + 
-"                </li>" +  
+"                </li>" + 
+"                <li>" +
+"                    <a href=\"/search?FirstName=&MiddleName=&LastName=&YearBorn=&YearDied=\">List All Entires</a>" +
+"                </li>" +
 "            </ul>" + 
 "            <ul class=\"nav navbar-nav navbar-right\">" + 
 "                <li class=\"navbar-right\">" + 
@@ -116,12 +119,34 @@ public class SearchServlet extends HttpServlet {
                         "<div class=\"container\">" +
                         "<div class=\"dropdown\">" + 
 "                           <label> Sort by </label>" + 
-"                           <select name=\"SortMethod\" form=\"searchPopup\">" + 
-"                               <option value=\"first\">First Name</option>" + 
-"                               <option value=\"last\" selected>Last Name</option>" + 
+"                           <select name=\"SortMethod\" form=\"searchPopup\">");
+        if (sortMethod.equals("first")) {
+            result.println(
+"                               <option value=\"first\" selected>First Name</option>" + 
+"                               <option value=\"last\">Last Name</option>" + 
 "                               <option value=\"birth\">Birth Year</option>" + 
-"                               <option value=\"death\">Death Year</option>" + 
-"                           </select>" + 
+"                               <option value=\"death\">Death Year</option>");
+        } else if (sortMethod.equals("birth")) {
+            result.println(
+"                               <option value=\"first\">First Name</option>" + 
+"                               <option value=\"last\">Last Name</option>" + 
+"                               <option value=\"birth\" selected>Birth Year</option>" + 
+"                               <option value=\"death\">Death Year</option>");
+        } else if (sortMethod.equals("death")) {
+            result.println(
+"                               <option value=\"first\">First Name</option>" + 
+"                               <option value=\"last\">Last Name</option>" + 
+"                               <option value=\"birth\">Birth Year</option>" + 
+"                               <option value=\"death\" selected>Death Year</option>");
+        } else {
+            result.println(
+"                               <option value=\"first\" selected>First Name</option>" + 
+"                               <option value=\"last\">Last Name</option>" + 
+"                               <option value=\"birth\">Birth Year</option>" + 
+"                               <option value=\"death\">Death Year</option>");
+        }
+
+                            result.println("</select>" + 
 "                           <input type=\"submit\" value=\"Sort\" form=\"searchPopup\">" + 
 "                       </div>" + 
                         "<h1>Search Results</h1>" + 
@@ -146,16 +171,12 @@ public class SearchServlet extends HttpServlet {
         plotList = Search.SearchDB(searchTerms);
 
         if (sortMethod.equals("first")) {
-            System.out.println("FIRST");
             Sort.SortFirst(plotList);
         } else if (sortMethod.equals("birth")) {
-            System.out.println("BIRTH");
             Sort.SortBirthYear(plotList);
         } else if (sortMethod.equals("death")) {
-            System.out.println("DEATH");
             Sort.SortDeathYear(plotList);
         } else {
-            System.out.println("LAST");
             Sort.SortLast(plotList);
         }
 
