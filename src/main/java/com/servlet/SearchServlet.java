@@ -74,19 +74,19 @@ public class SearchServlet extends HttpServlet {
 "                    <div class=\"popup\" onclick=\"toggleSearchPopup()\"> Search </div>" + 
 "                    <form class=\"popuptext\" id=\"searchPopup\" method=\"get\" action=\"search\">" + 
 "                        " + 
-"                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\" value=\"" + firstName + "><br>" + 
+"                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\" value=\"" + firstName + "\""><br>" + 
 "                        " + 
-"                            <label>Middle Name:</label> <input type=\"text\" name=\"MiddleName\" value=\"" + middleName + "><br>" + 
+"                            <label>Middle Name:</label> <input type=\"text\" name=\"MiddleName\" value=\"" + middleName + "\"><br>" + 
 "                        " + 
-"                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\" value=\"" + lastName + "><br>" + 
+"                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\" value=\"" + lastName + "\"><br>" + 
 "" + 
 "                            <!-- Spouse" + 
 "                            <label>Spouse:</label> <input type=\"text\" name=\"Spouse\"><br>" + 
 "                            -->" + 
 "" + 
-"                            <label>Year Born:</label> <input type=\"text\" name=\"YearBorn\" value=\"" + born + "><br>" + 
+"                            <label>Year Born:</label> <input type=\"text\" name=\"YearBorn\" value=\"" + born + "\"><br>" + 
 "" + 
-"                            <label>Year Died:</label> <input type=\"text\" name=\"YearDied\" value=\"" + died + "><br>" + 
+"                            <label>Year Died:</label> <input type=\"text\" name=\"YearDied\" value=\"" + died + "\"><br>" + 
 "" + 
 "                        <input type=\"submit\" value=\"Search\">" + 
 "                    </form>" + 
@@ -118,7 +118,7 @@ public class SearchServlet extends HttpServlet {
 "                               <option value=\"birth\">Birth Year</option>" + 
 "                               <option value=\"death\">Death Year</option>" + 
 "                           </select>" + 
-"                           <input type=\"submit\" value=\"Sort\">" + 
+"                           <input type=\"submit\" value=\"Sort\" form=\"searchPopup\">" + 
 "                       </div>" + 
                         "<h1>Search Results</h1>" + 
                         "<hr>");
