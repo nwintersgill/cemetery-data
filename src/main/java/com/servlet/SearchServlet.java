@@ -193,7 +193,7 @@ public class SearchServlet extends HttpServlet {
         }
         if (Search.isValid(died)) {
             if (Search.isValid(location)) {
-                out.println("Died " + died + ", ")
+                out.println("Died " + died + ", ");
             } else {
                 out.println("Died " + died);
             }

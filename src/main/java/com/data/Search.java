@@ -259,7 +259,7 @@ public class Search {
 					plotList.add(curPlot);
 				}
 			} else {
-				everythingSearch = dbConnection.prepareStatement("SELECT * FROM plot;")
+				everythingSearch = dbConnection.prepareStatement("SELECT * FROM plot;");
 				db = everythingSearch.executeQuery();
 				while (db.next()) {
 					Plot curPlot = new Plot();
