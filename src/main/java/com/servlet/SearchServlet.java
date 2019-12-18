@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import com.data.Plot;
 import com.data.Search;
+import com.data.Sort;
 
 /* TODO get thymleaf working so we can use fragments
 import org.thymeleaf.TemplateEngine;
@@ -27,13 +28,20 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 public class SearchServlet extends HttpServlet {
 
     @Override
-    public void doPost (HttpServletRequest request,
+    public void doGet (HttpServletRequest request,
                        HttpServletResponse response)
         throws ServletException, IOException
     {
     // set content-type header before accessing the Writer
         response.setContentType("text/html");
         PrintWriter result = response.getWriter();
+
+    //Get the identifiers of the items
+        String firstName = request.getParameter("FirstName");
+        String middleName = request.getParameter("MiddleName");
+        String lastName = request.getParameter("LastName");
+        String born = request.getParameter("YearBorn");
+        String died = request.getParameter("YearDied");
 
     // then write the response
         result.println(
@@ -64,21 +72,21 @@ public class SearchServlet extends HttpServlet {
 "                </li>" + 
 "                <li class=\"active\">" + 
 "                    <div class=\"popup\" onclick=\"toggleSearchPopup()\"> Search </div>" + 
-"                    <form class=\"popuptext\" id=\"searchPopup\" method=\"post\" action=\"search\">" + 
+"                    <form class=\"popuptext\" id=\"searchPopup\" method=\"get\" action=\"search\">" + 
 "                        " + 
-"                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\"><br>" + 
+"                            <label>First Name:</label> <input type=\"text\" name=\"FirstName\" value=\"" + firstName + "><br>" + 
 "                        " + 
-"                            <label>Middle Name:</label> <input type=\"text\" name=\"MiddleName\"><br>" + 
+"                            <label>Middle Name:</label> <input type=\"text\" name=\"MiddleName\" value=\"" + middleName + "><br>" + 
 "                        " + 
-"                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\"><br>" + 
+"                            <label>Last Name:</label> <input type=\"text\" name=\"LastName\" value=\"" + lastName + "><br>" + 
 "" + 
 "                            <!-- Spouse" + 
 "                            <label>Spouse:</label> <input type=\"text\" name=\"Spouse\"><br>" + 
 "                            -->" + 
 "" + 
-"                            <label>Year Born:</label> <input type=\"text\" name=\"YearBorn\"><br>" + 
+"                            <label>Year Born:</label> <input type=\"text\" name=\"YearBorn\" value=\"" + born + "><br>" + 
 "" + 
-"                            <label>Year Died:</label> <input type=\"text\" name=\"YearDied\"><br>" + 
+"                            <label>Year Died:</label> <input type=\"text\" name=\"YearDied\" value=\"" + died + "><br>" + 
 "" + 
 "                        <input type=\"submit\" value=\"Search\">" + 
 "                    </form>" + 
@@ -102,16 +110,18 @@ public class SearchServlet extends HttpServlet {
  
         result.println(
                         "<div class=\"container\">" +
+                        "<div class=\"dropdown\">" + 
+"                           <label> Sort by </label>" + 
+"                           <select name=\"sortMethod\" form=\"searchPopup\">" + 
+"                               <option value=\"first\">First Name</option>" + 
+"                               <option value=\"last\" selected>Last Name</option>" + 
+"                               <option value=\"birth\">Birth Year</option>" + 
+"                               <option value=\"death\">Death Year</option>" + 
+"                           </select>" + 
+"                           <input type=\"submit\" value=\"Sort\">" + 
+"                       </div>" + 
                         "<h1>Search Results</h1>" + 
                         "<hr>");
-
-
-        //Get the identifier of the item
-        String firstName = request.getParameter("FirstName");
-        String middleName = request.getParameter("MiddleName");
-        String lastName = request.getParameter("LastName");
-        String born = request.getParameter("YearBorn");
-        String died = request.getParameter("YearDied");
 
         Plot searchTerms = new Plot();
         searchTerms.setFirstName(firstName);
