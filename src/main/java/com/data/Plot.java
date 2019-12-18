@@ -24,6 +24,7 @@ public class Plot {
 	boolean bought;
 	boolean inUse;
 	int price;
+	int plotNum;
 	
 
 	public Plot() {
@@ -39,10 +40,11 @@ public class Plot {
 		this.bought = false;
 		this.inUse = false;
 		this.price = -1;
+		this.plotNum = -1;
 	
 }
 	@SuppressWarnings("deprecation")
-	public Plot(String firstName, String lastName, String middleName, String spouse, String plotLocation, String notes, int birthYear, int deathYear, String purchaseDate, boolean bought, boolean inUse, int price) {
+	public Plot(String firstName, String lastName, String middleName, String spouse, String plotLocation, String notes, int birthYear, int deathYear, String purchaseDate, boolean bought, boolean inUse, int price, int plotNum) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
@@ -55,6 +57,7 @@ public class Plot {
 		this.bought = bought;
 		this.inUse = inUse;
 		this.price = price;
+		this.plotNum = plotNum;
 	}
 	
 	public static void main(String[] args) {
@@ -110,6 +113,10 @@ public class Plot {
 		return price;
 	}
 	
+	public int getPlotNum() {
+		return plotNum;
+	}
+	
 	//setters for all attributes of the plot class
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -159,6 +166,12 @@ public class Plot {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	public void setPlotNum(int plotNum) {
+		this.plotNum = plotNum;
+	}
+	
+	//prints all public attributes of the plot object
 	@Override
 	public String toString() {
 		String myString = this.firstName + " " + this.middleName + " " + this.lastName + " " + 
