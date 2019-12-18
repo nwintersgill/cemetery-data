@@ -121,21 +121,25 @@ public class PQQuery {
 	 * { System.out.println("create table failed, exiting ..."); System.exit(1); } }
 	 */
 
-	    public static void insertToDB(Connection db, String fileName, String tblName)  {
+	    public static void insertToDB(String fileName)  {
+	    	Connection db = connectDB();
 	    	
-	    	String curString = "";
+	    	PreparedStatement s;
+	    	ResultSet results;
 			try  {
 				//creates an instance of the database to insert
-				Statement s = db.createStatement();
+				s = db.prepareStatement("INSERT INTO plot VALUES ?;");
 				
 				//open, read the file, and insert into database 
 				BufferedReader reader = new BufferedReader(new FileReader(fileName));
+				reader.readLine();
 				while (reader.readLine() != null) {
+					String curString = "";
 					curString = reader.readLine();
-					s.executeUpdate("INSERT INTO " + tblName + "VALUES " + curString);
-					reader.close();
-					
+					s.setString(1, curString);
+					s.executeUpdate();
 				}
+				reader.close();
 			}   
 			
 			//Catch for when initializing the reader
