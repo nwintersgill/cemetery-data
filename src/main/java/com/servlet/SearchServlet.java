@@ -42,6 +42,7 @@ public class SearchServlet extends HttpServlet {
         String lastName = request.getParameter("LastName");
         String born = request.getParameter("YearBorn");
         String died = request.getParameter("YearDied");
+        String sortMethod = request.getParameter("SortMethod");
 
     // then write the response
         result.println(
@@ -112,7 +113,7 @@ public class SearchServlet extends HttpServlet {
                         "<div class=\"container\">" +
                         "<div class=\"dropdown\">" + 
 "                           <label> Sort by </label>" + 
-"                           <select name=\"sortMethod\" form=\"searchPopup\">" + 
+"                           <select name=\"SortMethod\" form=\"searchPopup\">" + 
 "                               <option value=\"first\">First Name</option>" + 
 "                               <option value=\"last\" selected>Last Name</option>" + 
 "                               <option value=\"birth\">Birth Year</option>" + 
@@ -140,9 +141,20 @@ public class SearchServlet extends HttpServlet {
 
         ArrayList<Plot> plotList;
         plotList = Search.SearchDB(searchTerms);
-        //plotList = new ArrayList<>();
-        //plotList.add(searchTerms);
 
+        if (sortMethod.equals("first")) {
+            System.out.println("FIRST");
+            Sort.SortFirst(plotList);
+        } else if (sortMethod.equals("birth")) {
+            System.out.println("BIRTH");
+            Sort.SortFirst(plotList);
+        } else if (sortMethod.equals("death")) {
+            System.out.println("DEATH");
+            Sort.SortFirst(plotList);
+        } else {
+            System.out.println("LAST");
+            Sort.SortFirst(plotList);
+        }
 
         if (plotList.isEmpty()) {
             result.println("No search results.");

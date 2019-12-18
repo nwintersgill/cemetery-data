@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Sort {
 	
-	public void SortFirst(ArrayList<Plot> plots) throws SQLException {
+	public static void SortFirst(ArrayList<Plot> plots) throws SQLException {
 		int size = plots.size();
 		for (int i = 0; i < size -1; i++) {
 			for (int j = 0; j < size-i-1; j++) {
@@ -31,7 +31,7 @@ public class Sort {
 		}
 	}
 	
-	public void SortYear() throws SQLException {
+	public static void SortYear() throws SQLException {
 		//connect to the database
 		Connection dbConnection = PQQuery.connectDB();
 		

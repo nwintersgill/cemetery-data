@@ -296,7 +296,6 @@ public class Search {
 			System.out.println("SQLException, exiting ...");
 			System.exit(1);
 		}
-		System.out.println("RECORD: " + record);
 		if (record.equalsIgnoreCase("first")) {
 			while (!plotList.isEmpty()) {
 				Plot curPlot = plotList.remove(0);
