@@ -232,20 +232,39 @@ public class SearchServlet extends HttpServlet {
         }
         if (Search.isValid(born)) {
             if (Search.isValid(died) || Search.isValid(location)) {
-                out.println("Born " + born + ", ");
+                if (born == -1) {
+                    out.println("Born (unknown), ");
+                } else {
+                    out.println("Born " + born + ", ");
+                }
             } else {
-                out.println("Born " + born + " ");
+                if (born == -1) {
+                    out.println("Born (unknown)");
+                } else {
+                    out.println("Born " + born + " ");
+                }
             }
         }
         if (Search.isValid(died)) {
             if (Search.isValid(location)) {
-                out.println("Died " + died + ", ");
+                if (died == -1) {
+                    out.println("Died (unknown), ");
+                } else {
+                    ut.println("Died " + died + ", ");
+                }
             } else {
-                out.println("Died " + died);
+                if (died == -1) {
+                    out.println("Died (unknown)");
+                } else {
+                    out.println("Died " + died);
+                }
             }
         }
         if (Search.isValid(location)) {
             out.println("Plot " + location);
+        }
+        else {
+            out.println("Plot (unknown)");
         }
         if (Search.isValid(notes)) {
             out.println(": " + notes);
