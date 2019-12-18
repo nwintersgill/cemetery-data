@@ -17,8 +17,9 @@
    crossorigin=""></script> <!-- header from leaflet -->
 
    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> <!-- header from turf.js -->
-
+   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
    <script type="text/javascript" src="mapGeneration.js"></script>
+   
 
 <style>
 #map {
@@ -42,11 +43,24 @@
 
 <script>
 
+    function getData(filePath){
+      x = $.get("/coordinates.txt",dataType='http')
+      console.log(x)
+   // x = jQuery.get('coordinates.txt',dataType="http");
+      return x;
+
+
+}
+
+    var tester = getData("");
+    console.log(tester)
+    console.log('HERE')
+    
+
     var green = colorCode[0], yellow = colorCode[2], red = colorCode[1];
 
     // define the center point of the map
-    var stMary_point = [40.784050, -76.538820], zoom = 15;
-
+    var stMary_point = [40.782155, -76.535929], zoom = 17;
     //generate the map
     greatMap = mapGen(stMary_point, zoom);
 
@@ -69,6 +83,8 @@
     });
 
     var marker_stMary= addCemetery(greatMap, "st.Mary Cemetery", graveIcon, [40.784050, -76.538820]);
+
+
 
   var stMary_coordinate = [
             [
