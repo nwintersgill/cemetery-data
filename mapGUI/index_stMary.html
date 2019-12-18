@@ -45,7 +45,7 @@
     var green = colorCode[0], yellow = colorCode[2], red = colorCode[1];
 
     // define the center point of the map
-    var stMary_point = [40.784050, -76.538820], zoom = 15;
+    var stMary_point = [40.784050, -76.538820], zoom = 17;
 
     //generate the map
     greatMap = mapGen(stMary_point, zoom);
@@ -62,11 +62,6 @@
     greatMap.on('click', onMapClick); // Click event, show LatLng in popup when clicked
 
     //setting up the icon
-    var graveIcon = L.icon({iconUrl:"grave.png",
-      iconSize:     [50, 50], // size of the icon
-      iconAnchor:   [22, 50], // point of the icon which will correspond to marker's location
-      popupAnchor:  [3, -60] // point from which the popup should open relative to the iconAnchor
-    });
 
     var marker_stMary= addCemetery(greatMap, "st.Mary Cemetery", graveIcon, [40.784050, -76.538820]);
 
@@ -168,7 +163,7 @@
     var stMary_grid = addGrid(20, 20, stMary_coordinate);
 
     for (i = 0; i < stMary_grid.length; i++){
-          stMary_grid[i].addTo(greatMap);
+      L.geoJSON(stMary_grid[i], {style: function (feature) {return feature.properties.style;}, onEachFeature: function (feature, layer) {layer.bindPopup(feature.properties.popupContent)}}).addTo(greatMap);
     }
 
 

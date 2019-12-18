@@ -5,7 +5,7 @@ const colorCode = [green = '#49FF00', red = '#FF0000', yellow = '#FFD500'];
       var map = L.map('map').setView(centerPoint, zoom);
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 25
+      maxZoom: 45
       }).addTo(map); // Set up the basic map layer, in this case the map layer is OpenStreetMap
       return map;
     }
@@ -27,7 +27,6 @@ const colorCode = [green = '#49FF00', red = '#FF0000', yellow = '#FFD500'];
 
       var poly = turf.polygon([plot_coordinate]);
       var bbox = turf.bbox(poly);
-
 
       var mapWidth = bbox[2] - bbox[0],
           mapHeight = bbox[3] - bbox[1];
@@ -59,7 +58,7 @@ const colorCode = [green = '#49FF00', red = '#FF0000', yellow = '#FFD500'];
               // top-left/top-right/bottom-right/bottom-left/top-left
               [tLx, tLy], [tRx, tRy], [bRx, bRy], [bLx, bLy], [tLx, tLy]
               ];
-              var color;
+
               fillColor = yellow;
               temp = turf.polygon([cell]);
               temp = turf.intersect(poly, temp);
@@ -92,8 +91,7 @@ const colorCode = [green = '#49FF00', red = '#FF0000', yellow = '#FFD500'];
                     ]
                 };
               }
-              grid = L.geoJSON(gridFeat, {style: function (feature) {return feature.properties.style;}, onEachFeature: function (feature, layer) {layer.bindPopup(feature.properties.popupContent)}});
-              gridCollection.push(grid);
+              gridCollection.push(gridFeat);
               // refresh cusror for cell
               curX = curX + cellWidth;
               counter += 1;
